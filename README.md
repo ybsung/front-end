@@ -10,3 +10,6 @@
 			* Building React Applications with Idiomatic Redux
 				 * https://egghead.io/courses/building-react-applications-with-idiomatic-redux
 				 * https://github.com/tayiorbeii/egghead.io_idiomatic_redux_course_notes
+## Stuff
+	* React
+		* WEBSITES USING REACT : https://wappalyzer.com/applications/react
