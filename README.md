@@ -22,7 +22,14 @@ Compare :
 [16 -> 17](https://github.com/gaearon/todos/compare/16-wrapping-dispatch-to-recognize-promises...17-the-middleware-chain), [17 -> 18](https://github.com/gaearon/todos/compare/17-the-middleware-chain...18-applying-redux-middleware), [18 -> 19](https://github.com/gaearon/todos/compare/18-applying-redux-middleware...19-updating-state-with-fetched-data), [19 -> 20](https://github.com/gaearon/todos/compare/19-updating-state-with-fetched-data...20-splitting-the-reducer-files), [20 -> 21](https://github.com/gaearon/todos/compare/20-splitting-the-reducer-files...21-displaying-loading-indicators)  
 [21 -> 22](https://github.com/gaearon/todos/compare/21-displaying-loading-indicators...22-dispatching-multiple-actions-with-thunks), [22 -> 23](https://github.com/gaearon/todos/compare/22-dispatching-multiple-actions-with-thunks...23-dispatching-actions-conditionally-with-thunks), [23 -> 24](https://github.com/gaearon/todos/compare/23-dispatching-actions-conditionally-with-thunks...24-handling-network-errors), [24 -> 25](https://github.com/gaearon/todos/compare/24-handling-network-errors...25-creating-data-on-the-server), [25 -> 26](https://github.com/gaearon/todos/compare/25-creating-data-on-the-server...26-normalizing-json-responses-with-normalizr)  
 [26 -> 27](https://github.com/gaearon/todos/compare/26-normalizing-json-responses-with-normalizr...27-updating-data-on-the-server)  
-                        
+
+## Library
+
+### MobX
+
+Wiki : https://mobx.js.org/
+Github : https://github.com/mobxjs/mobx
+Video : https://egghead.io/courses/manage-complex-state-in-react-apps-with-mobx
                         
 ## Stuff  
     * React  
