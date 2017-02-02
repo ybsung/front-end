@@ -6,6 +6,7 @@ https://egghead.io/courses/start-building-accessible-web-applications-today
 ## 01. Accessible Icon Buttons
 
 - Example
+
 ```
 <button>Help!</button>
 ```
@@ -18,6 +19,7 @@ AS-IS
 	<i class="icon icon-help"></i>
 </button>
 ```
+
 TO-BE
 ```
 .visuallyhidden { 
@@ -45,6 +47,7 @@ AS-IS
 	<i class="icon icon-help"></i>
 </button>
 ```
+
 TO-BE
 ```
 <button aria-label="Help!">
@@ -57,12 +60,12 @@ TO-BE
 AS-IS
 ```
 <div class="button" role="button" tabindex="0">
-	<svg width="32" height="32" viewBox="0 0 32 32" class="icon" aria-labelledby="svgtitle">
-		<title id="svgtitle">Help!</title>
+	<svg width="32" height="32" viewBox="0 0 32 32" class="icon">
 		<path d="M14 24h4v-4h-4v4zM16 8c-3 0-6 3-6 6h4c0-1 1-2 2-2s2 1 2 2c0 2-4 2-4 4h4c2-0.688 4-2 4-5s-3-5-6-5zM16 0c-8.844 0-16 7.156-16 16s7.156 16 16 16 16-7.156 16-16-7.156-16-16-16zM16 28c-6.625 0-12-5.375-12-12s5.375-12 12-12 12 5.375 12 12-5.375 12-12 12z"></path>
 	</svg>
 </div>
 ```
+
 TO-BE
 ```
 <div class="button" role="button" tabindex="0">
@@ -76,12 +79,14 @@ TO-BE
 ## 02. Accessible Button Events
 
 - with Button tag [1]
+
 AS-IS
 ```
 <button aria-label="Help">
 	<i class="icon icon-help"></i>
 </button>
 ```
+
 TO-BE
 ```
 <button aria-label="Help" ng-click="doStuff()">
@@ -90,12 +95,14 @@ TO-BE
 ```
 
 - with div tag [1]
+
 AS-IS
 ```
 <div class="button" role="button" tabindex="0" aria-label="Menu">
 	<i class="icon icon-menu"></i>
 </div>
-```	
+```
+
 TO-BE
 ```
 <div class="button" role="button" tabindex="0" aria-label="Menu" ng-click="doStuff()" ng-keydown="doStuff()">
@@ -115,7 +122,8 @@ angular.module('demoApp', [])
 
 ## 03. Building Forms with Accessibility in Mind
 
-- For `input` tag
+- `input` tag and label are sibling
+
 AS-IS
 ```
 Your name
@@ -160,7 +168,8 @@ TO-BE
 </div>
 ```
 
-- input and label
+- `input` and label have different parent.
+
 AS-IS
 ```
 <div class="label-wrap">
@@ -173,6 +182,7 @@ AS-IS
 </div>
 
 ```
+
 TO-BE
 ```
 <div class="label-wrap">
@@ -186,6 +196,7 @@ TO-BE
 ```
 
 - input group title
+
 AS-IS
 ```
 <p>Favorite animal</p>
@@ -256,19 +267,6 @@ ul.skip-links a:focus {
 }
 ```
 
-[2]: JS
-```
-$(document).ready(function() {
-	var list = $('ul'),
-		listItems = list.find('li');
-
-	$('.btn-delete').on('click', function() {
-		$(this).parent().remove();
-		listItems.find('.btn-delete').first().focus();
-	});
-});
-```
-
 ## 06. What is the Accessibility Tree?
 	
 ## 07. Intro to ARIA
@@ -332,6 +330,7 @@ custom-button[aria-disabled="true"] {
 	<a href="#link6">Link 6</a>
 </div>
 ```
+
 ## 09. Using the Voiceover screen reader to test for accessibility
 
 ## 10. Testing for Accessibility with the NVDA Screen Reader on Windows
@@ -339,7 +338,6 @@ custom-button[aria-disabled="true"] {
 ## 11. Creating visual skip links in HTML and CSS
 
 AS-IS
-
 ```
 <ul>
 	<li><a href="#global-nav">Skip to navigation</a></li>
@@ -358,7 +356,6 @@ AS-IS
 ```
 
 TO-BE
-
 ```
 .skip-links {
 	list-style: none;
@@ -397,6 +394,19 @@ TO-BE
 </footer>
 ```
 
+JS
+```
+$(document).ready(function() {
+	var list = $('ul'),
+		listItems = list.find('li');
+
+	$('.btn-delete').on('click', function() {
+		$(this).parent().remove();
+		listItems.find('.btn-delete').first().focus();
+	});
+});
+```
+
 ## 12. Accessible modal dialogs
 
 AS-IS
@@ -419,7 +429,6 @@ AS-IS
 ```
 
 TO-BE
-
 ```
 <div class="wrapper">
 	<ul class="skip-links">
