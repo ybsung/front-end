@@ -111,6 +111,91 @@ angular.module('demoApp', [])
 ```
 
 ## 03. Building Forms with Accessibility in Mind
+
+- For `input` tag
+AS-IS
+```
+Your name
+<input type="text">
+<div>
+	<input type="radio" name="animals">
+	Dog
+</div>
+<div>
+	<input type="radio" name="animals">
+	Cat
+</div>
+<div>
+	<input type="radio" name="animals">
+	Polar bear
+</div>
+```
+
+TO-BE
+```
+<label>
+	Your name
+	<input type="text">
+</label>
+<div>
+	<label>
+		<input type="radio" name="animals">
+		Dog
+	</label>
+</div>
+<div>
+	<label>
+		<input type="radio" name="animals">
+		Cat
+	</label>
+</div>
+<div>
+	<label>
+		<input type="radio" name="animals">
+		Polar bear
+	</label>
+</div>
+```
+
+- input and label
+AS-IS
+```
+<div class="label-wrap">
+	<label>
+		Hometown
+	</label>
+</div>
+<div class="input-wrap">
+	<input type="text">
+</div>
+
+```
+TO-BE
+```
+<div class="label-wrap">
+	<label for="hometown">
+		Hometown
+	</label>
+</div>
+<div class="input-wrap">
+	<input type="text" id="hometown">
+</div>
+```
+
+- input group title
+AS-IS
+```
+<p>Favorite animal</p>
+```
+
+TO-BE
+```
+<fieldset>
+	<legend>Favorite animal</legend>
+	...
+</fieldset>
+```
+
 ## 04. Headings and semantic structure for accessible web pages
 ## 05. Focus management using CSS, HTML, and JavaScript
 ## 06. What is the Accessibility Tree?
