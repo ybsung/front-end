@@ -4,16 +4,16 @@
 
 - Example
 ```
-		<button>Help!</button>
+<button>Help!</button>
 ```
 
 - By span tag  
 
 AS-IS
 ```
-		<button>
-			<i class="icon icon-help"></i>
-		</button>
+<button>
+	<i class="icon icon-help"></i>
+</button>
 ```
 TO-BE
 ```
@@ -28,46 +28,46 @@ TO-BE
 	width: 1px;
 }
 
-		<button>
-			<span class="visuallyhidden">Help!</span>
-			<i class="icon icon-help" aria-hidden="true"></i>
-		</button>
+<button>
+	<span class="visuallyhidden">Help!</span>
+	<i class="icon icon-help" aria-hidden="true"></i>
+</button>
 ```
 
 - By aria-label attribute  
 
 AS-IS
 ```
-    <button>
-			<i class="icon icon-help"></i>
-		</button>
+<button>
+	<i class="icon icon-help"></i>
+</button>
 ```
 TO-BE
 ```
-    <button aria-label="Help!">
-			<i class="icon icon-help" aria-hidden="true"></i>
-		</button>
+<button aria-label="Help!">
+	<i class="icon icon-help" aria-hidden="true"></i>
+</button>
 ```
 
 - By aria-lablledby for SVG  
 
 AS-IS
 ```
-		<div class="button" role="button" tabindex="0">
-			<svg width="32" height="32" viewBox="0 0 32 32" class="icon" aria-labelledby="svgtitle">
-				<title id="svgtitle">Help!</title>
-				<path d="M14 24h4v-4h-4v4zM16 8c-3 0-6 3-6 6h4c0-1 1-2 2-2s2 1 2 2c0 2-4 2-4 4h4c2-0.688 4-2 4-5s-3-5-6-5zM16 0c-8.844 0-16 7.156-16 16s7.156 16 16 16 16-7.156 16-16-7.156-16-16-16zM16 28c-6.625 0-12-5.375-12-12s5.375-12 12-12 12 5.375 12 12-5.375 12-12 12z"></path>
-			</svg>
-		</div>
+<div class="button" role="button" tabindex="0">
+	<svg width="32" height="32" viewBox="0 0 32 32" class="icon" aria-labelledby="svgtitle">
+		<title id="svgtitle">Help!</title>
+		<path d="M14 24h4v-4h-4v4zM16 8c-3 0-6 3-6 6h4c0-1 1-2 2-2s2 1 2 2c0 2-4 2-4 4h4c2-0.688 4-2 4-5s-3-5-6-5zM16 0c-8.844 0-16 7.156-16 16s7.156 16 16 16 16-7.156 16-16-7.156-16-16-16zM16 28c-6.625 0-12-5.375-12-12s5.375-12 12-12 12 5.375 12 12-5.375 12-12 12z"></path>
+	</svg>
+</div>
 ```
 TO-BE
 ```
-		<div class="button" role="button" tabindex="0">
-			<svg width="32" height="32" viewBox="0 0 32 32" class="icon" aria-labelledby="svgtitle">
-				<title id="svgtitle">Help!</title>
-				<path d="M14 24h4v-4h-4v4zM16 8c-3 0-6 3-6 6h4c0-1 1-2 2-2s2 1 2 2c0 2-4 2-4 4h4c2-0.688 4-2 4-5s-3-5-6-5zM16 0c-8.844 0-16 7.156-16 16s7.156 16 16 16 16-7.156 16-16-7.156-16-16-16zM16 28c-6.625 0-12-5.375-12-12s5.375-12 12-12 12 5.375 12 12-5.375 12-12 12z"></path>
-			</svg>
-		</div>
+<div class="button" role="button" tabindex="0">
+	<svg width="32" height="32" viewBox="0 0 32 32" class="icon" aria-labelledby="svgtitle">
+		<title id="svgtitle">Help!</title>
+		<path d="M14 24h4v-4h-4v4zM16 8c-3 0-6 3-6 6h4c0-1 1-2 2-2s2 1 2 2c0 2-4 2-4 4h4c2-0.688 4-2 4-5s-3-5-6-5zM16 0c-8.844 0-16 7.156-16 16s7.156 16 16 16 16-7.156 16-16-7.156-16-16-16zM16 28c-6.625 0-12-5.375-12-12s5.375-12 12-12 12 5.375 12 12-5.375 12-12 12z"></path>
+	</svg>
+</div>
 ```
 
 ## 02. Accessible Button Events
@@ -75,29 +75,29 @@ TO-BE
 - with Button tag [1]
 AS-IS
 ```
-		<button aria-label="Help">
-			<i class="icon icon-help"></i>
-		</button>
+<button aria-label="Help">
+	<i class="icon icon-help"></i>
+</button>
 ```
 TO-BE
 ```
-		<button aria-label="Help" ng-click="doStuff()">
-			<i class="icon icon-help"></i>
-		</button>
+<button aria-label="Help" ng-click="doStuff()">
+	<i class="icon icon-help"></i>
+</button>
 ```
 
 - with div tag [1]
 AS-IS
 ```
-		<div class="button" role="button" tabindex="0" aria-label="Menu">
-			<i class="icon icon-menu"></i>
-		</div>
+<div class="button" role="button" tabindex="0" aria-label="Menu">
+	<i class="icon icon-menu"></i>
+</div>
 ```	
 TO-BE
 ```
-		<div class="button" role="button" tabindex="0" aria-label="Menu" ng-click="doStuff()" ng-keydown="doStuff()">
-			<i class="icon icon-menu"></i>
-		</div>
+<div class="button" role="button" tabindex="0" aria-label="Menu" ng-click="doStuff()" ng-keydown="doStuff()">
+	<i class="icon icon-menu"></i>
+</div>
 ```	
 
 [1]: JS code
@@ -291,8 +291,108 @@ custom-button[aria-disabled="true"] {
 ```
 
 ## 08. How Visible vs. Hidden Elements Affect Keyboard/Screen Reader Users
+
+```
+.visuallyhidden { 
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+<div style="display: none;">
+	<h1>Heading</h1>
+	<a href="#link1">Link 1</a>
+</div>
+<div hidden>
+	<h1>Heading</h1>
+	<a href="#link2">Link 2</a>
+</div>
+<div style="opacity: 0;">
+	<h1>Heading</h1>
+	<a href="#link3">Link 3</a>
+</div>
+<div style="visibility: hidden;">
+	<h1>Heading</h1>
+	<a href="#link4">Link 4</a>
+</div>
+<div class="visuallyhidden">
+	<h1>Heading</h1>
+	<a href="#link5">Link 5</a>
+</div>
+<div aria-hidden="true">
+	<h1>Heading</h1>
+	<a href="#link6">Link 6</a>
+</div>
+```
 ## 09. Using the Voiceover screen reader to test for accessibility
+
 ## 10. Testing for Accessibility with the NVDA Screen Reader on Windows
+
 ## 11. Creating visual skip links in HTML and CSS
+
+AS-IS
+
+```
+<ul>
+	<li><a href="#global-nav">Skip to navigation</a></li>
+	<li><a href="#main">Skip to content</a></li>
+	<li><a href="#footer">Skip to footer</a></li>
+</ul>
+<header role="banner" id="global-nav" tabindex="-1">
+</header>
+<main role="main" id="main" tabindex="-1">
+	<h1>Homepage</h1>
+	<h2><a href="#">Article Title</a></h2>
+</main>
+<footer role="contentinfo" id="footer" tabindex="-1">
+
+</footer>
+```
+
+TO-BE
+
+```
+.skip-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+.skip-links li a {
+	background-color: #fff;
+	display: block;
+	left: -600000px;
+	padding: 0.5em;
+	position: absolute;
+}
+.skip-links li a:focus {
+	left: 0;
+}
+[tabindex="-1"]:focus {
+	outline: none;
+}
+
+<ul class="skip-links">
+	<li><a href="#global-nav">Skip to navigation</a></li>
+	<li><a href="#main">Skip to content</a></li>
+	<li><a href="#footer">Skip to footer</a></li>
+</ul>
+<header role="banner" id="global-nav" tabindex="-1">
+
+</header>
+<main role="main" id="main" tabindex="-1">
+	<h1>Homepage</h1>
+	<h2><a href="#">Article Title</a></h2>
+</main>
+<footer role="contentinfo" id="footer" tabindex="-1">
+
+</footer>
+```
+
 ## 12. Accessible modal dialogs
 ## 13. Using the tabindex attribute for keyboard accessibility
