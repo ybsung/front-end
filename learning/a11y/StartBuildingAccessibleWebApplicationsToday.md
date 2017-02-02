@@ -1,4 +1,6 @@
-# Start Building Accessible Web Applications Today
+# Start Building Accessible Web Applications Today (Egghead.io)
+
+This repo contains notes from [Marcy Sutton](https://egghead.io/instructors/marcy-sutton)'s accessibility course on Egghead.io
 
 ## 01. Accessible Icon Buttons
 
@@ -395,4 +397,99 @@ TO-BE
 ```
 
 ## 12. Accessible modal dialogs
+
+AS-IS
+```
+<ul class="skip-links">
+	<li><a href="#global-nav">Skip to navigation</a></li>
+	<li><a href="#main">Skip to content</a></li>
+	<li><a href="#footer">Skip to footer</a></li>
+</ul>
+<header role="banner" id="global-nav" tabindex="-1">
+
+</header>
+<main role="main" id="main" tabindex="-1">
+	<h1>Homepage</h1>
+	<h2><a href="#">Article Title</a></h2>
+</main>
+<footer role="contentinfo" id="footer" tabindex="-1">
+
+</footer>
+```
+
+TO-BE
+
+```
+<div class="wrapper">
+	<ul class="skip-links">
+		<li><a href="#global-nav">Skip to navigation</a></li>
+		<li><a href="#main">Skip to content</a></li>
+		<li><a href="#footer">Skip to footer</a></li>
+	</ul>
+	<header role="banner" id="global-nav" tabindex="-1">
+
+	</header>
+	<main role="main" id="main" tabindex="-1">
+		<h1>Homepage</h1>
+		<h2><a href="#">Article Title</a></h2>
+
+		<button id="modalTrigger">Open dialog</button>
+	</main>
+	<footer role="contentinfo" id="footer" tabindex="-1">
+
+	</footer>
+</div>
+<dialog role="dialog">
+	<h2>Modal dialog</h2>
+	<button id="closeBtn">Close</button>
+</dialog>
+
+<script src="node_modules/dialog-polyfill/dialog-polyfill.js"></script>
+<script src="node_modules/wicg-inert/inert.js"></script>
+<script src="script.js"></script>
+```
+
+```
+document.addEventListener("DOMContentLoaded", pageLoaded);
+
+function pageLoaded(event) { 
+	
+	var dialogBtn = document.getElementById('dialogTrigger'),
+		closeBtn = document.getElementById('closeBtn'),
+		dialog = document.querySelector('dialog'),
+		wrapper = document.querySelector('.wrapper');
+
+	dialogPolyfill.registerDialog(dialog);
+
+	dialogBtn.addEventListener('click', function() {
+		dialog.show();
+
+		wrapper.setAttribute('inert', '');
+
+		document.addEventListener('keydown', handleKeydown);
+	});
+
+	closeBtn.addEventListener('click', closeModal);
+
+	function closeModal(event) {
+		dialog.close();
+
+		wrapper.removeAttribute('inert');
+
+		setTimeout(function() {
+			dialogBtn.focus();
+		});
+
+		document.removeEventListener('keydown', handleKeydown);
+	}
+
+	function handleKeydown(event) {
+		if (event.keyCode === 27) {
+			closeModal();
+		}
+	}
+}
+```
+
 ## 13. Using the tabindex attribute for keyboard accessibility
+
