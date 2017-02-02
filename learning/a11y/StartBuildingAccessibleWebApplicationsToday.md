@@ -197,9 +197,99 @@ TO-BE
 ```
 
 ## 04. Headings and semantic structure for accessible web pages
+
 ## 05. Focus management using CSS, HTML, and JavaScript
+
+AS-IS
+```
+  <header role="banner">
+  	<h1>Focus Management</h1>
+  </header>
+  <main role="main">
+  	<h2>Main content</h2>
+  	...
+  </main>
+  <footer role="contentinfo">
+	...
+  </footer>
+```
+
+TO-BE
+```
+  <ul class="skip-links">
+    <li><a href="#main">Main content</a></li>
+    <li><a href="#footer">Global footer</a></li>
+  </ul>
+  <header role="banner">
+  	<h1>Focus Management</h1>
+  </header>
+  <main role="main" id="main" tabindex="-1">
+  	<h2>Main content</h2>
+  	...
+  </main>
+  <footer role="contentinfo" id="footer" tabindex="-1">
+	...
+  </footer>
+```
+
+[1]: CSS
+```
+[tabindex="-1"] {
+	outline: 0;
+}
+ul.skip-links {
+	list-style: none;
+	position: absolute;
+}
+ul.skip-links a {
+	background-color: #fff;
+	display: block;
+	left: -999999px;
+	padding: 1em;
+	position: absolute;
+}
+ul.skip-links a:focus {
+	left: 0;
+}
+```
+
+[2]: JS
+```
+$(document).ready(function() {
+	var list = $('ul'),
+		listItems = list.find('li');
+
+	$('.btn-delete').on('click', function() {
+		$(this).parent().remove();
+		listItems.find('.btn-delete').first().focus();
+	});
+});
+```
+
 ## 06. What is the Accessibility Tree?
+	
 ## 07. Intro to ARIA
+
+- button tag
+
+```
+<!-- native buttons submit forms by default -->
+<!-- use type="button" to stop that behavior -->
+<button disabled>button</button>
+```
+
+- custom button
+
+```
+custom-button[aria-disabled="true"] {
+	color: graytext;
+	pointer-events: false;
+}
+
+<!-- this custom button won't submit a form without JavaScript, a major winning point of the native button -->
+<custom-button role="button" tabindex="0" aria-label="Close" aria-disabled="true"></custom-button>
+```
+
 ## 08. How Visible vs. Hidden Elements Affect Keyboard/Screen Reader Users
 ## 09. Using the Voiceover screen reader to test for accessibility
 ## 10. Testing for Accessibility with the NVDA Screen Reader on Windows
