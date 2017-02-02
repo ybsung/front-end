@@ -71,6 +71,45 @@ TO-BE
 ```
 
 ## 02. Accessible Button Events
+
+- with Button tag [1]
+AS-IS
+```
+		<button aria-label="Help">
+			<i class="icon icon-help"></i>
+		</button>
+```
+TO-BE
+```
+		<button aria-label="Help" ng-click="doStuff()">
+			<i class="icon icon-help"></i>
+		</button>
+```
+
+- with div tag [1]
+AS-IS
+```
+		<div class="button" role="button" tabindex="0" aria-label="Menu">
+			<i class="icon icon-menu"></i>
+		</div>
+```	
+TO-BE
+```
+		<div class="button" role="button" tabindex="0" aria-label="Menu" ng-click="doStuff()" ng-keydown="doStuff()">
+			<i class="icon icon-menu"></i>
+		</div>
+```	
+
+[1]: JS code
+```
+angular.module('demoApp', [])
+.controller('demoController', function($scope) {
+  $scope.doStuff = function($event){
+  	alert('do stuff');
+  };
+});
+```
+
 ## 03. Building Forms with Accessibility in Mind
 ## 04. Headings and semantic structure for accessible web pages
 ## 05. Focus management using CSS, HTML, and JavaScript
