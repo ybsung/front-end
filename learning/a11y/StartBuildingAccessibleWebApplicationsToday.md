@@ -1,6 +1,7 @@
 # Start Building Accessible Web Applications Today (Egghead.io)
 
-This repo contains notes from [Marcy Sutton](https://egghead.io/instructors/marcy-sutton)'s accessibility course on Egghead.io
+This repo contains notes from [Marcy Sutton](https://egghead.io/instructors/marcy-sutton)'s accessibility course on Egghead.io  
+https://egghead.io/courses/start-building-accessible-web-applications-today
 
 ## 01. Accessible Icon Buttons
 
@@ -493,3 +494,23 @@ function pageLoaded(event) {
 
 ## 13. Using the tabindex attribute for keyboard accessibility
 
+```
+<button id="realBtn" class="btn">Button</button>
+
+<div tabindex="100" id="fakeBtn" class="btn" role="button">Button</div>
+
+document.addEventListener("DOMContentLoaded", pageLoaded);
+
+function pageLoaded() {
+	var btn = document.getElementById('fakeBtn');
+	btn.addEventListener('click', btnEventHandler);
+	btn.addEventListener('keydown', btnEventHandler);
+}
+
+function btnEventHandler(event) {
+	console.log(event.type);
+
+	var realBtn = document.getElementById('realBtn');
+	realBtn.focus();
+}
+```
