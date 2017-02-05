@@ -5,6 +5,8 @@ https://egghead.io/courses/start-building-accessible-web-applications-today
 
 ## 01. Accessible Icon Buttons
 
+: How to create accessible buttons using HTML and CSS
+
 - Example
 
 ```
@@ -22,6 +24,7 @@ AS-IS
 
 TO-BE
 ```
+// To be hidden visually
 .visuallyhidden { 
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -38,6 +41,8 @@ TO-BE
 	<i class="icon icon-help" aria-hidden="true"></i>
 </button>
 ```
+1. Add a `span` element and a visually hidden class in it
+2. Add `area-hidden="true"` in `i` element
 
 - By aria-label attribute  
 
@@ -54,12 +59,14 @@ TO-BE
 	<i class="icon icon-help" aria-hidden="true"></i>
 </button>
 ```
+1. Add `aria-label` in `button`
+2. Add `aria-hidden="true"` in `i`
 
 - By aria-lablledby for SVG  
 
 AS-IS
 ```
-<div class="button" role="button" tabindex="0">
+<div class="button">
 	<svg width="32" height="32" viewBox="0 0 32 32" class="icon">
 		<path d="M14 24h4v-4h-4v4zM16 8c-3 0-6 3-6 6h4c0-1 1-2 2-2s2 1 2 2c0 2-4 2-4 4h4c2-0.688 4-2 4-5s-3-5-6-5zM16 0c-8.844 0-16 7.156-16 16s7.156 16 16 16 16-7.156 16-16-7.156-16-16-16zM16 28c-6.625 0-12-5.375-12-12s5.375-12 12-12 12 5.375 12 12-5.375 12-12 12z"></path>
 	</svg>
@@ -75,10 +82,17 @@ TO-BE
 	</svg>
 </div>
 ```
+1. Add `role` and `tabindex` in `div` element
+2. Add `title` element as the first child in `svg` element
+3. Add `aria-labelledby`  in `svg` element.
+
+* `aria-labelledby="svgtitle"` is needed now because of Chrome bug. But it could be fixed later.
 
 ## 02. Accessible Button Events
 
-- with Button tag [1]
+: How we make buttons work from keyboard
+
+- With `button` tag [1]
 
 AS-IS
 ```
@@ -93,12 +107,14 @@ TO-BE
 	<i class="icon icon-help"></i>
 </button>
 ```
+1. To work : Add `ng-click` in Angular 1  in `button` element
 
-- with div tag [1]
+
+- With `div` tag [1]
 
 AS-IS
 ```
-<div class="button" role="button" tabindex="0" aria-label="Menu">
+<div class="button">
 	<i class="icon icon-menu"></i>
 </div>
 ```
@@ -108,7 +124,9 @@ TO-BE
 <div class="button" role="button" tabindex="0" aria-label="Menu" ng-click="doStuff()" ng-keydown="doStuff()">
 	<i class="icon icon-menu"></i>
 </div>
-```	
+```
+1. To be accessible : Add `role`, `tabindex`, `aria-label` in `div` element
+2. To work : Add `ng-click`, `ng-keydown` in `div` element
 
 [1]: JS code
 ```
@@ -122,7 +140,9 @@ angular.module('demoApp', [])
 
 ## 03. Building Forms with Accessibility in Mind
 
-- `input` tag and label are sibling
+: How to create more accessible forms 
+
+- in case that `input` element and its label are sibling elements
 
 AS-IS
 ```
@@ -168,7 +188,7 @@ TO-BE
 </div>
 ```
 
-- `input` and label have different parent.
+- In case that `input` and its label have different parent.
 
 AS-IS
 ```
@@ -195,7 +215,7 @@ TO-BE
 </div>
 ```
 
-- input group title
+- `input` group title
 
 AS-IS
 ```
@@ -523,3 +543,18 @@ function btnEventHandler(event) {
 	realBtn.focus();
 }
 ```
+
+# Resources
+Use Chrome with accessibility extensions
+https://support.google.com/chrome/answer/7040464?hl=en
+https://chrome.google.com/webstore/category/collection/accessibility
+	Accessibility Developer Tools, chrome extension
+	https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb
+
+Accessibility Tree
+chrome://accessibility/
+
+The guide for `Accessibility` in `Elements` panel of Chrome inspector
+https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a
+
+
