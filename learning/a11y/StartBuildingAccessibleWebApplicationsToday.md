@@ -482,8 +482,8 @@ AS-IS
 
 </footer>
 ```
-Code : at 02:10 in https://egghead.io/lessons/css-creating-visual-skip-links-in-html-and-css#/
-Output : at 02:17 in https://egghead.io/lessons/css-creating-visual-skip-links-in-html-and-css#/
+Code : at 02:10 in https://egghead.io/lessons/css-creating-visual-skip-links-in-html-and-css#/  
+Output : at 02:17 in https://egghead.io/lessons/css-creating-visual-skip-links-in-html-and-css#/  
 
 TO-BE
 ```
@@ -527,6 +527,8 @@ Output : at 02:43 in https://egghead.io/lessons/css-creating-visual-skip-links-i
 
 ## 12. Accessible modal dialogs
 
+: Learn how to create a modal dialog with accessible keyboard and screen reader mechanics
+
 AS-IS
 ```
 <ul class="skip-links">
@@ -561,12 +563,15 @@ TO-BE
 		<h1>Homepage</h1>
 		<h2><a href="#">Article Title</a></h2>
 
+		<!-- To open a model dialog -->
 		<button id="modalTrigger">Open dialog</button>
 	</main>
 	<footer role="contentinfo" id="footer" tabindex="-1">
 
 	</footer>
 </div>
+
+<!-- `role` should be `dialog` -->
 <dialog role="dialog">
 	<h2>Modal dialog</h2>
 	<button id="closeBtn">Close</button>
@@ -589,42 +594,65 @@ function pageLoaded(event) {
 
 	dialogPolyfill.registerDialog(dialog);
 
+	// To open a modal dialog
 	dialogBtn.addEventListener('click', function() {
 		dialog.show();
 
+		// Disable all elements in `.wrapper` element.
 		wrapper.setAttribute('inert', '');
 
+		// To close a modal dialog
 		document.addEventListener('keydown', handleKeydown);
 	});
 
+	// To cloase a model dialog with `click`
 	closeBtn.addEventListener('click', closeModal);
 
+	// To cloase a model dialog with `keydown`
+	function handleKeydown(event) {
+		if (event.keyCode === 27) {
+			closeModal();
+		}
+	}
+
+	// Close a model dialog
 	function closeModal(event) {
 		dialog.close();
 
+		// Enable all elements in `.wrapper` element.
 		wrapper.removeAttribute('inert');
 
+		// Due to timing issue
 		setTimeout(function() {
 			dialogBtn.focus();
 		});
 
 		document.removeEventListener('keydown', handleKeydown);
 	}
-
-	function handleKeydown(event) {
-		if (event.keyCode === 27) {
-			closeModal();
-		}
-	}
 }
 ```
 
+- Using the native HTML5 dialog element
+- Using experimental `inert` attribute (with polyfills)
+- Using JavaScript focus management. 
+
+### Resources
+
+For more details on creating accessible dialog content, check out this great article by Marco Zehe, Advanced ARIA Tip #2: Accessible Modal Dialogs: https://www.marcozehe.de/2015/02/05/advanced-aria-tip-2-accessible-modal-dialogs/  
+
+Used in this lesson:  
+Google dialog element polyfill: https://github.com/GoogleChrome/dialog-polyfill  
+Inert attribute polyfill: https://github.com/WICG/inert  
+
 ## 13. Using the tabindex attribute for keyboard accessibility
 
-```
-<button id="realBtn" class="btn">Button</button>
+- Fake and real buttons
 
-<div tabindex="100" id="fakeBtn" class="btn" role="button">Button</div>
+```
+<div tabindex="0" id="fakeBtn" class="btn" role="button">Button</div>
+
+<button tabindex="-1" id="realBtn" class="btn">Button</button>
+
 
 document.addEventListener("DOMContentLoaded", pageLoaded);
 
@@ -642,17 +670,32 @@ function btnEventHandler(event) {
 }
 ```
 
+- I wouldn't recommend adding anything other than 0 or -1 as `tabindex`.
+
+```
+<div tabindex="0" id="fakeBtn" class="btn" role="button">Button</div>
+
+<button tabindex="-1" id="realBtn" class="btn">Button</button>
+
+<button>Button</button>
+```
+at 04:27 in https://egghead.io/lessons/html-5-using-the-tabindex-attribute-for-keyboard-accessibility#/
+
+Problem : When tapping, it skips to the last button.
+Solution : the tab order means that you would have to manage those integer values of every single interactive element on a page.
+
 # Resources
+
+## Accessibility Tree
+chrome://accessibility/
+
+## Assessibility tab
+The guide for `Accessibility` in `Elements` panel of Chrome inspector
+https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a
+
+## Accessibility Properties
 Use Chrome with accessibility extensions
 https://support.google.com/chrome/answer/7040464?hl=en
 https://chrome.google.com/webstore/category/collection/accessibility
 	Accessibility Developer Tools, chrome extension
 	https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb
-
-Accessibility Tree
-chrome://accessibility/
-
-The guide for `Accessibility` in `Elements` panel of Chrome inspector
-https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a
-
-
