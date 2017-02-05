@@ -1,5 +1,5 @@
 # Start Building Accessible Web Applications Today (Egghead.io)
-
+  
 This repo contains notes from [Marcy Sutton](https://egghead.io/instructors/marcy-sutton)'s accessibility course on Egghead.io  
 https://egghead.io/courses/start-building-accessible-web-applications-today
 
@@ -163,8 +163,8 @@ Your name
 	Polar bear
 </div>
 ```
-Problem 1: When clicking on `Your name`, the `input` could not get focus
-Problem 2: When clicking any label of radio `input`, the input could not get focus
+Problem 1: When clicking on `Your name`, the `input` could not get focus  
+Problem 2: When clicking any label of radio `input`, the input could not get focus  
 
 TO-BE
 ```
@@ -195,7 +195,7 @@ TO-BE
 
 - Explicit labeling
 
-:In case that `input` and its label have different parent.
+: In case that `input` and its label have different parent.
 
 AS-IS
 ```
@@ -238,6 +238,8 @@ TO-BE
 ```
 
 ## 04. Headings and semantic structure for accessible web pages
+
+Video : https://egghead.io/lessons/html-5-headings-and-semantic-structure-for-accessible-web-pages
 
 ## 05. Focus management using CSS, HTML, and JavaScript
 
@@ -318,16 +320,16 @@ ul.skip-links a:focus {
 
 ### Chrome browser
 #### `Accessibility` tab in chrome insepctor Element's panel
-https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/ at 00:50 in Video
+At 00:50 in Video https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/  
 
 #### `Accessibility tree`  
 chrome://accessibility  
 It would be a huge performance problem to be building and showing this tree all the time.  
-https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/ at 01:40 in Video  
+At 01:40 in Video https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/  
 
 ### Edge
 #### `Accessibility tree` tab in Edge DOM explorer  
-https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/ at 02:53 in Video  
+At 02:53 in Video https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/  
 
 ## 07. Intro to ARIA
 
@@ -338,7 +340,7 @@ https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/ at 02:53 in V
 - Don't use abstract roles
 - Use the widget roles
 
-### native element vs custom element
+### Native element vs custom element
 - button tag
 
 ```
@@ -361,48 +363,50 @@ custom-button[aria-disabled="true"] {
 
 ## 08. How Visible vs. Hidden Elements Affect Keyboard/Screen Reader Users
 
+: There are several ways to hide elements
+
 ```
 <div style="display: none;">
 	<h1>Heading</h1>
 	<a href="#link1">Link 1</a>
 </div>
-<!--
-	 To hide something from everybody, your keyboard and screen reader users included,
-	 use `display: none`.
--->
+```
+To hide something from everybody, your keyboard and screen reader users included,
 
+```
 <div hidden>
 	<h1>Heading</h1>
 	<a href="#link2">Link 2</a>
 </div>
-<!--
-	 To hide something from everybody, your keyboard and screen reader users included,
-	 use `display: none`.
-	 Supported in quite a few browsers
+```
+To hide something from everybody, your keyboard and screen reader users included
+Same with `display: none`
+Supported in quite a few browsers
 -->
 
+```
 <div style="opacity: 0;">
 	<h1>Heading</h1>
 	<a href="#link3">Link 3</a>
 </div>
-<!--
-	 To reserve the dimensions of the div
-	 To hide the content
-	 To be focusable
-	: Useful for animation
--->
+```
+To reserve the dimensions of the div
+To hide the content
+To be focusable
+: Useful for animation
 
+```
 <div style="visibility: hidden;">
 	<h1>Heading</h1>
 	<a href="#link4">Link 4</a>
 </div>
-<!--
-	 To reserve the dimensions of the div
-	 To hide the content
-	 To be not focusable
-	: Useful for the disabled button in a toolbar
--->
+```
+To reserve the dimensions of the div
+To hide the content
+To be not focusable
+: Useful for the disabled button in a toolbar
 
+```
 /* from the HTML5 Boilerplate */
 .visuallyhidden { 
 	border: 0;
@@ -419,29 +423,29 @@ custom-button[aria-disabled="true"] {
 	<h1>Heading</h1>
 	<a href="#link5">Link 5</a>
 </div>
-<!--
-	 To hide on the screen
-	 To be focusable
-	 : Useful for text alternatives
--->
+```
+To hide on the screen
+To be focusable
+: Useful for text alternatives
 
+```
 <div aria-hidden="true">
 	<h1>Heading</h1>
 	<a href="#link6">Link 6</a>
 </div>
-	 To show on the screen
-	 : To disable it from a screen reader user
-	 : Needed to add this tab index of negative one ( `aria-hidden` will cascade. But `tab-index` will not cascade )
-	 : Usefull for dialog
 ```
+To show on the screen
+: To disable it from a screen reader user
+: Needed to add this tab index of negative one ( `aria-hidden` will cascade. But `tab-index` will not cascade )
+: Usefull for dialog
 
 ## 09. Using the Voiceover screen reader to test for accessibility
 
 : Learn the basics for operating Voiceover with Safari
 
-Resources
-Apple Voiceover commands and gestures: https://www.apple.com/voiceover/info/guide/_1131.html
-WebAIM Voiceover Tutorial: http://webaim.org/articles/voiceover/
+###Resources
+Apple Voiceover commands and gestures: https://www.apple.com/voiceover/info/guide/_1131.html  
+WebAIM Voiceover Tutorial: http://webaim.org/articles/voiceover/  
 
 ## 10. Testing for Accessibility with the NVDA Screen Reader on Windows
 
@@ -679,15 +683,12 @@ function btnEventHandler(event) {
 
 <button>Button</button>
 ```
-at 04:27 in https://egghead.io/lessons/html-5-using-the-tabindex-attribute-for-keyboard-accessibility#/
+At 04:27 in https://egghead.io/lessons/html-5-using-the-tabindex-attribute-for-keyboard-accessibility#/
 
-Problem : When tapping, it skips to the last button.
-Solution : the tab order means that you would have to manage those integer values of every single interactive element on a page.
+Problem : When tapping, it skips to the last button.  
+Solution : the tab order means that you would have to manage those integer values of every single interactive element on a page.  
 
 # Resources
-
-## Accessibility Tree
-chrome://accessibility/
 
 ## Assessibility tab
 The guide for `Accessibility` in `Elements` panel of Chrome inspector
@@ -699,3 +700,6 @@ https://support.google.com/chrome/answer/7040464?hl=en
 https://chrome.google.com/webstore/category/collection/accessibility
 	Accessibility Developer Tools, chrome extension
 	https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb
+
+## Accessibility Tree
+chrome://accessibility/
