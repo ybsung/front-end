@@ -24,7 +24,7 @@ AS-IS
 
 TO-BE
 ```
-// To be hidden visually
+/* To be hidden visually */
 .visuallyhidden { 
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -142,7 +142,9 @@ angular.module('demoApp', [])
 
 : How to create more accessible forms 
 
-- in case that `input` element and its label are sibling elements
+- Implicit labeling
+
+: In case that `input` element and its label are sibling elements
 
 AS-IS
 ```
@@ -161,6 +163,8 @@ Your name
 	Polar bear
 </div>
 ```
+Problem 1: When clicking on `Your name`, the `input` could not get focus
+Problem 2: When clicking any label of radio `input`, the input could not get focus
 
 TO-BE
 ```
@@ -187,8 +191,11 @@ TO-BE
 	</label>
 </div>
 ```
+1. Wrap the text and the inputs in a `label` element (implicit labeling)
 
-- In case that `input` and its label have different parent.
+- Explicit labeling
+
+:In case that `input` and its label have different parent.
 
 AS-IS
 ```
@@ -200,7 +207,6 @@ AS-IS
 <div class="input-wrap">
 	<input type="text">
 </div>
-
 ```
 
 TO-BE
@@ -215,12 +221,13 @@ TO-BE
 </div>
 ```
 
-- `input` group title
+- Form group title
 
 AS-IS
 ```
 <p>Favorite animal</p>
 ```
+Problem : The form group title is not readable.
 
 TO-BE
 ```
@@ -233,6 +240,23 @@ TO-BE
 ## 04. Headings and semantic structure for accessible web pages
 
 ## 05. Focus management using CSS, HTML, and JavaScript
+
+- Not ever dropping focus or leaving them in the wrong context as new things appear
+
+JS
+```
+$(document).ready(function() {
+	var list = $('ul'),
+		listItems = list.find('li');
+
+	$('.btn-delete').on('click', function() {
+		$(this).parent().remove();
+		listItems.find('.btn-delete').first().focus();
+	});
+});
+```
+
+- Easier to navigate with skip links
 
 AS-IS
 ```
@@ -268,6 +292,7 @@ TO-BE
 
 [1]: CSS
 ```
+/* Only for tabindex is negative */
 [tabindex="-1"] {
 	outline: 0;
 }
@@ -288,9 +313,32 @@ ul.skip-links a:focus {
 ```
 
 ## 06. What is the Accessibility Tree?
-	
+
+: How to look at the accessibility tree
+
+### Chrome browser
+#### `Accessibility` tab in chrome insepctor Element's panel
+https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/ at 00:50 in Video
+
+#### `Accessibility tree`  
+chrome://accessibility  
+It would be a huge performance problem to be building and showing this tree all the time.  
+https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/ at 01:40 in Video  
+
+### Edge
+#### `Accessibility tree` tab in Edge DOM explorer  
+https://egghead.io/lessons/html-5-what-is-the-accessibility-tree#/ at 02:53 in Video  
+
 ## 07. Intro to ARIA
 
+: Accessible rich Internet applications, or WAI-ARIA
+
+### Role
+- What an element does
+- Don't use abstract roles
+- Use the widget roles
+
+### native element vs custom element
 - button tag
 
 ```
@@ -314,6 +362,48 @@ custom-button[aria-disabled="true"] {
 ## 08. How Visible vs. Hidden Elements Affect Keyboard/Screen Reader Users
 
 ```
+<div style="display: none;">
+	<h1>Heading</h1>
+	<a href="#link1">Link 1</a>
+</div>
+<!--
+	 To hide something from everybody, your keyboard and screen reader users included,
+	 use `display: none`.
+-->
+
+<div hidden>
+	<h1>Heading</h1>
+	<a href="#link2">Link 2</a>
+</div>
+<!--
+	 To hide something from everybody, your keyboard and screen reader users included,
+	 use `display: none`.
+	 Supported in quite a few browsers
+-->
+
+<div style="opacity: 0;">
+	<h1>Heading</h1>
+	<a href="#link3">Link 3</a>
+</div>
+<!--
+	 To reserve the dimensions of the div
+	 To hide the content
+	 To be focusable
+	: Useful for animation
+-->
+
+<div style="visibility: hidden;">
+	<h1>Heading</h1>
+	<a href="#link4">Link 4</a>
+</div>
+<!--
+	 To reserve the dimensions of the div
+	 To hide the content
+	 To be not focusable
+	: Useful for the disabled button in a toolbar
+-->
+
+/* from the HTML5 Boilerplate */
 .visuallyhidden { 
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -325,35 +415,53 @@ custom-button[aria-disabled="true"] {
 	width: 1px;
 }
 
-<div style="display: none;">
-	<h1>Heading</h1>
-	<a href="#link1">Link 1</a>
-</div>
-<div hidden>
-	<h1>Heading</h1>
-	<a href="#link2">Link 2</a>
-</div>
-<div style="opacity: 0;">
-	<h1>Heading</h1>
-	<a href="#link3">Link 3</a>
-</div>
-<div style="visibility: hidden;">
-	<h1>Heading</h1>
-	<a href="#link4">Link 4</a>
-</div>
 <div class="visuallyhidden">
 	<h1>Heading</h1>
 	<a href="#link5">Link 5</a>
 </div>
+<!--
+	 To hide on the screen
+	 To be focusable
+	 : Useful for text alternatives
+-->
+
 <div aria-hidden="true">
 	<h1>Heading</h1>
 	<a href="#link6">Link 6</a>
 </div>
+	 To show on the screen
+	 : To disable it from a screen reader user
+	 : Needed to add this tab index of negative one ( `aria-hidden` will cascade. But `tab-index` will not cascade )
+	 : Usefull for dialog
 ```
 
 ## 09. Using the Voiceover screen reader to test for accessibility
 
+: Learn the basics for operating Voiceover with Safari
+
+Resources
+Apple Voiceover commands and gestures: https://www.apple.com/voiceover/info/guide/_1131.html
+WebAIM Voiceover Tutorial: http://webaim.org/articles/voiceover/
+
 ## 10. Testing for Accessibility with the NVDA Screen Reader on Windows
+
+NVDA is a popular open source screen reader on Windows that works well with Firefox.
+
+### Resources
+
+- Using NVDA to Emulate Web Accessibility : http://webaim.org/articles/nvda/
+- NVDA Keyboard Shortcuts : https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts
+- Understanding Screen Reader Interaction Modes : http://tink.uk/understanding-screen-reader-interaction-modes/
+- Three Things You Should Know Before Using Voiceover for Testing : http://webaim.org/blog/three-things-voiceover/
+
+### Installing NVDA
+
+If you're on a Windows machine, you can install NVDA directly. If you're on a Mac or Linux, you could install a Windows virtual machine:
+- Install VirtualBox : https://www.virtualbox.org/wiki/Downloads
+- Get a Windows VM from Microsoft - I use IE11 : https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
+- Install Firefox - install on the VM! : https://www.mozilla.org/en-US/firefox/new/
+- Install NVDA : https://www.nvaccess.org/download/
+- How to Map Your Mac's Capslock Key to a NVDA or JAWS Key in a Windows VM : https://www.marcozehe.de/2015/06/07/how-to-map-your-macs-capslock-key-to-a-nvda-or-jaws-key-in-a-windows-virtual-machine/
 
 ## 11. Creating visual skip links in HTML and CSS
 
@@ -374,6 +482,8 @@ AS-IS
 
 </footer>
 ```
+Code : at 02:10 in https://egghead.io/lessons/css-creating-visual-skip-links-in-html-and-css#/
+Output : at 02:17 in https://egghead.io/lessons/css-creating-visual-skip-links-in-html-and-css#/
 
 TO-BE
 ```
@@ -413,19 +523,7 @@ TO-BE
 
 </footer>
 ```
-
-JS
-```
-$(document).ready(function() {
-	var list = $('ul'),
-		listItems = list.find('li');
-
-	$('.btn-delete').on('click', function() {
-		$(this).parent().remove();
-		listItems.find('.btn-delete').first().focus();
-	});
-});
-```
+Output : at 02:43 in https://egghead.io/lessons/css-creating-visual-skip-links-in-html-and-css#/
 
 ## 12. Accessible modal dialogs
 
