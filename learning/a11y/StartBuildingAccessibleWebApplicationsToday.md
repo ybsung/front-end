@@ -363,49 +363,51 @@ custom-button[aria-disabled="true"] {
 
 ## 08. How Visible vs. Hidden Elements Affect Keyboard/Screen Reader Users
 
-: There are several ways to hide elements
+: There are several ways to hide elements  
 
+To hide something from everybody, your keyboard and screen reader users included,  
 ```
 <div style="display: none;">
 	<h1>Heading</h1>
 	<a href="#link1">Link 1</a>
 </div>
 ```
-To hide something from everybody, your keyboard and screen reader users included,
 
+To hide something from everybody, your keyboard and screen reader users included  
+Same with `display: none`  
+Supported in quite a few browsers  
 ```
 <div hidden>
 	<h1>Heading</h1>
 	<a href="#link2">Link 2</a>
 </div>
 ```
-To hide something from everybody, your keyboard and screen reader users included
-Same with `display: none`
-Supported in quite a few browsers
--->
 
+To reserve the dimensions of the div  
+To hide the content  
+To be focusable  
+: Useful for animation  
 ```
 <div style="opacity: 0;">
 	<h1>Heading</h1>
 	<a href="#link3">Link 3</a>
 </div>
 ```
-To reserve the dimensions of the div
-To hide the content
-To be focusable
-: Useful for animation
 
+To reserve the dimensions of the div  
+To hide the content  
+To be not focusable  
+: Useful for the disabled button in a toolbar  
 ```
 <div style="visibility: hidden;">
 	<h1>Heading</h1>
 	<a href="#link4">Link 4</a>
 </div>
 ```
-To reserve the dimensions of the div
-To hide the content
-To be not focusable
-: Useful for the disabled button in a toolbar
 
+To hide on the screen  
+To be focusable  
+: Useful for text alternatives  
 ```
 /* from the HTML5 Boilerplate */
 .visuallyhidden { 
@@ -424,20 +426,17 @@ To be not focusable
 	<a href="#link5">Link 5</a>
 </div>
 ```
-To hide on the screen
-To be focusable
-: Useful for text alternatives
 
+To show on the screen  
+: To disable it from a screen reader user  
+: Needed to add this tab index of negative one ( `aria-hidden` will cascade. But `tab-index` will not cascade )  
+: Usefull for dialog  
 ```
 <div aria-hidden="true">
 	<h1>Heading</h1>
 	<a href="#link6">Link 6</a>
 </div>
 ```
-To show on the screen
-: To disable it from a screen reader user
-: Needed to add this tab index of negative one ( `aria-hidden` will cascade. But `tab-index` will not cascade )
-: Usefull for dialog
 
 ## 09. Using the Voiceover screen reader to test for accessibility
 
