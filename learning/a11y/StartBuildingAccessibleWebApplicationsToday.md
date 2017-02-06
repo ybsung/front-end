@@ -7,13 +7,13 @@ https://egghead.io/courses/start-building-accessible-web-applications-today
 
 : How to create accessible buttons using HTML and CSS
 
-- Example
+### Example
 
 ```
 <button>Help!</button>
 ```
 
-- By span tag  
+### By span tag  
 
 AS-IS
 ```
@@ -44,7 +44,7 @@ TO-BE
 1. Add a `span` element and a visually hidden class in it
 2. Add `area-hidden="true"` in `i` element
 
-- By aria-label attribute  
+### By aria-label attribute  
 
 AS-IS
 ```
@@ -62,7 +62,7 @@ TO-BE
 1. Add `aria-label` in `button`
 2. Add `aria-hidden="true"` in `i`
 
-- By aria-lablledby for SVG  
+### By aria-lablledby for SVG  
 
 AS-IS
 ```
@@ -92,7 +92,7 @@ TO-BE
 
 : How we make buttons work from keyboard
 
-- With `button` tag [1]
+### With `button` tag [1]
 
 AS-IS
 ```
@@ -110,7 +110,7 @@ TO-BE
 1. To work : Add `ng-click` in Angular 1  in `button` element
 
 
-- With `div` tag [1]
+### With `div` tag [1]
 
 AS-IS
 ```
@@ -142,7 +142,7 @@ angular.module('demoApp', [])
 
 : How to create more accessible forms 
 
-- Implicit labeling
+### Implicit labeling
 
 : In case that `input` element and its label are sibling elements
 
@@ -193,7 +193,7 @@ TO-BE
 ```
 1. Wrap the text and the inputs in a `label` element (implicit labeling)
 
-- Explicit labeling
+### Explicit labeling
 
 : In case that `input` and its label have different parent.
 
@@ -221,7 +221,7 @@ TO-BE
 </div>
 ```
 
-- Form group title
+### Form group title
 
 AS-IS
 ```
@@ -243,7 +243,7 @@ Video : https://egghead.io/lessons/html-5-headings-and-semantic-structure-for-ac
 
 ## 05. Focus management using CSS, HTML, and JavaScript
 
-- Not ever dropping focus or leaving them in the wrong context as new things appear
+### Not ever dropping focus or leaving them in the wrong context as new things appear
 
 JS
 ```
@@ -258,7 +258,7 @@ $(document).ready(function() {
 });
 ```
 
-- Easier to navigate with skip links
+### Easier to navigate with skip links
 
 AS-IS
 ```
@@ -341,7 +341,7 @@ At 02:53 in Video https://egghead.io/lessons/html-5-what-is-the-accessibility-tr
 - Use the widget roles
 
 ### Native element vs custom element
-- button tag
+#### button tag
 
 ```
 <!-- native buttons submit forms by default -->
@@ -349,7 +349,7 @@ At 02:53 in Video https://egghead.io/lessons/html-5-what-is-the-accessibility-tr
 <button disabled>button</button>
 ```
 
-- custom button
+#### custom button
 
 ```
 custom-button[aria-disabled="true"] {
