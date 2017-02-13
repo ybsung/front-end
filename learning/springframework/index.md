@@ -84,6 +84,29 @@ sqlplus / as sysdba
   - @adduser
   - conn myora/test09
 
+## Maven
+- over spring123
+  - configurate
+    - conver to maven
+    
+- spring123/pon.xml
+    above <build>
+    ```
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.6.RELEASE</version>
+        </dependency>
+    </dependencies>
+    ```
+    C:\Users\kosta00\.m2
+- oracle xe ojdbc6.jar
+  - Copy C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar into C:\SpringBasic\service\apache-tomcat-9.0.0.M17-windows-x64\apache-tomcat-9.0.0.M17\lib
+  - refresh
+  - Stop and start server
+  - Check `ojdbc6.jar` in `Apache Tomcat v9.0` of `Package Explorer`
+
 
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
