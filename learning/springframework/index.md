@@ -589,5 +589,68 @@ ex5_menu.xml
 </beans>
 ```
 
+## Ex 6 : Ex6_AutoWired1
+
+Ex6_AutoWired1.java
+```
+package ex6;
+
+public class Ex6_AutoWired1 {
+	private String name;
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String printName() {
+		return "당신의 이름은" + name + "입니다.";
+	}
+}
+```
+
+ex6_auto1.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="name" class="java.lang.String">
+		<constructor-arg>
+			<value>김길동</value>
+		</constructor-arg>
+	</bean>
+	<bean id="autoBean1" class="ex6.Ex6_AutoWired1">
+		<property name="name" ref="name" />
+	</bean>
+</beans>
+```
+
+ex6_auto1.jsp
+```
+<%@page import="ex6.Ex6_AutoWired1"%>
+<%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	ApplicationContext ctx = new GenericXmlApplicationContext("ex6/ex6_auto1.xml");
+	Ex6_AutoWired1 ea = ctx.getBean("autoBean1", Ex6_AutoWired1.class);
+%>
+이름 : <%=ea.printName() %>
+</body>
+</html>
+```
+
+Over `ex6_auto1.jsp` > Run as > Run on Server 
+
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
