@@ -184,7 +184,210 @@ public class Ex1_MessageApp {
 </body>
 </html>
 ```
+### exam todate
 
+```
+package ex1;
+
+public class Exam_Todate {
+private String todate, name;
+```
+
+### ex 2
+
+- Over `spring123/src` > new > Class > ex2 Ex2_Resource 
+  - Code
+```
+package ex2;
+
+public class Ex2_Resource {
+	private String name;
+	// alt + shift + s : short key to generate setter/getter
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}
+```
+- Over `spring123/src` > new > Class > ex2 Ex2_Message
+  - Code
+```
+package ex2;
+
+// 값을 추가 시킬 수 있는 방법은 기본 2가지 setter, 생성자
+public class Ex2_Message {
+	private Ex2_Resource resource;
+
+	// alt + shift + s > constructor using Fields
+	public Ex2_Message(Ex2_Resource resource) {
+		super();
+		this.resource = resource;
+	}
+
+	public void setResource(Ex2_Resource resource) {
+		this.resource = resource;
+	}
+	public String msgPrint() {
+		String name = resource.getName();
+		return name + "님 안녕하세요!";
+	}
+}
+```
+- ex2_di.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="res" class="ex2.Ex2_Resource" p:name="김길동" />
+	<!-_ di 시킬 대상을 적용해서 주입시킬 때 ref= 속성을 사용한다ㅣ. -->
+	<bean id="msg" class="ex2.Ex2_Message">
+		<constructor-arg ref="res" />
+		<property name="resource" ref="res" />
+	</bean>
+</beans>
+
+```
+- ex2_di.jsp
+```
+<%@page import="ex2.Ex2_Message"%>
+<%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+// Spring Container를 생성
+	ApplicationContext ctx = new GenericXmlApplicationContext("ex2/ex2_di.xml");
+
+// Ex1_MessageApp의 레퍼런스를 획득 -> id로 참조
+	Ex2_Message msg = ctx.getBean("msg", Ex2_Message.class);
+
+// 잘 사용
+	String message = msg.msgPrint();
+%>
+<p style="background: yellow">
+	<%=message %>
+</p>
+</body>
+</html>
+```
+
+## Exam DI
+
+- Exam_DI.java
+```
+package ex2;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Exam_DI {
+	private SimpleDateFormat sdf;
+	private Date date;
+	public String printDate() {
+		String todate = sdf.format(date);
+		return todate;
+	}
+	public void setSdf(SimpleDateFormat sdf) {
+		this.sdf = sdf;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+}
+```
+
+
+
+exam_di.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="sdf" class="java.text.SimpleDateFormat">
+		<constructor-arg>
+			<value>yyyy-MM-dd</value>
+		</constructor-arg>
+	</bean>
+	<bean id="date" class="java.util.Date"/>
+	<bean id="edi" class="ex2.Exam_DI" p:sdf-ref="sdf" p:date-ref="date" />
+</beans>
+```
+
+## Ex3
+
+Ex3_ServiceImple.java
+```
+package ex3;
+
+public class Ex3_ServiceImple implements Ex3_Service{
+	private int num;
+	private String name, str;
+	// 생성자로 주입을 받을 때는 기본적으로 String 이 기본값
+	public Ex3_ServiceImple(int num) {
+		this.num = num;
+		System.out.println("Int 호출");
+	}
+	public Ex3_ServiceImple(String str) {
+		this.str = str;
+		System.out.println("String 호출");
+	}
+	public Ex3_ServiceImple(int num, String name) {
+		this.num = num;
+		this.name = name;
+	}
+	@Override
+	public String print() {
+		StringBuffer s  = new StringBuffer();
+		int res = num * 10;
+		s.append("RES :").append(res);
+		return s.toString();
+	}
+	@Override
+	public String call() {
+		StringBuffer s  = new StringBuffer();
+		s.append(str).append("★");
+		return s.toString();
+	}
+	@Override
+	public String moniter() {
+		StringBuffer s  = new StringBuffer();
+		int res = num + 10;
+		s.append("RES :").append(res);
+		s.append("Name:").append(name);
+		return s.toString();
+	}
+	
+
+}
+
+```
+
+Ex3_Service.java
+```
+package ex3;
+
+public interface Ex3_Service {
+	public String print();
+	public String call();
+	public String moniter();
+}
+```
 
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
