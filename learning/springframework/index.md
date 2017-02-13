@@ -70,11 +70,19 @@ http://projects.spring.io/spring-framework/
     - <Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>
     - 
   window > web browser > chrome
-  
+
+- Run server
+  - Over `spring123`
+  - Run As > Run on Server
+
+- SQL
 sqlplus / as sysdba
   - sho user;
-  - create user myora identified by test09 default tablespace users;
-  - grant resource,connect, create view to myora;
+  - ed adduser (adduser.sql)
+    - create user myora identified by test09 default tablespace users;
+    - grant resource,connect, create view to myora;
+  - @adduser
+  - conn myora/test09
 
 
 ## Reference
