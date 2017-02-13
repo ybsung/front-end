@@ -389,5 +389,42 @@ public interface Ex3_Service {
 }
 ```
 
+ex3_const.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="cont1" class="ex3.Ex3_ServiceImple">
+		<constructor-arg value="10000" type="int" />
+	</bean>
+</beans>
+```
+
+ex3_const.jsp
+```
+<%@page import="ex3.Ex3_Service"%>
+<%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	ApplicationContext ctx = new GenericXmlApplicationContext("ex3/ex3_const.xml");
+	Ex3_Service es = ctx.getBean("cont1", Ex3_Service.class);
+%>
+Str : <%=es.call()%> / Num : <%=es.print() %>
+</body>
+</html>
+```
+
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
