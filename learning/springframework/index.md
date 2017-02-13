@@ -689,6 +689,7 @@ import javax.annotation.Resource;
 
 public class Ex7_Resource {
 	@Resource
+	// @Resource(name="msg2")
 	private String msg;
 	
 	public String printMsg() {
