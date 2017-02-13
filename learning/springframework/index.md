@@ -426,5 +426,168 @@ Str : <%=es.call()%> / Num : <%=es.print() %>
 </html>
 ```
 
+## Ex5
+
+OrderSystem.java
+AS-IS
+```
+package ex5;
+
+public class OrderSystem {
+ 
+ private KorOrder m1;
+ private IndoOrder m2;
+ public MenuInter getMenu() {
+  return menu;
+ }
+
+ public String printMenu(String orderName){
+  return m1.order(orderName);
+ }
+ 
+}
+```
+TO-BE
+```
+package ex5;
+
+public class OrderSystem {
+ private MenuInter menu;
+ // private KorOrder m1;
+ // private IndoOrder m2;
+ public MenuInter getMenu() {
+  return menu;
+ }
+ 
+ public void setMenu(MenuInter menu) {
+	this.menu = menu;
+}
+
+public String printMenu(String orderName){
+  return menu.order(orderName);
+ }
+}
+```
+
+KorOrder.java
+```
+package ex5;
+
+public class KorOrder implements MenuInter{
+
+	@Override
+	public String order(String orderName) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("오늘의 메인 코스인 한식을 주문하셨군요 ^^");
+		sb.append(orderName).append("/ 100000 won");
+		return sb.toString();
+	}
+
+}
+```
+
+IndoOrder.java
+```
+package ex5;
+
+public class IndoOrder implements MenuInter{
+
+	@Override
+	public String order(String orderName) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("오늘은  인도 요리를 주문하셨군요 ^^");
+		sb.append(orderName).append("/ 200000 won");
+		return sb.toString();
+	}
+
+}
+```
+
+MenuInter.java
+```
+package ex5;
+
+public interface MenuInter {
+	public String order(String orderName);
+}
+```
+
+orderForm.jsp
+```
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>orderForm.jsp</title>
+</head>
+<body>
+	<div id="wrap">
+		<form method="post" action="orderProcess.jsp">
+			<select name="orderName">
+				<option value="kor">한식</option>
+				<option value="indo">인도식</option>
+			</select>
+			<input type="submit" value="send">
+		</form>
+	</div>
+</body>
+</html>
+```
+
+orderProcess.jsp
+```
+<%@page import="ex5.OrderSystem"%>
+<%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%
+	request.setCharacterEncoding("euc-kr");
+	String menu = request.getParameter("orderName");
+	String path = "ex5/ex5_menu.xml";
+	ApplicationContext ctx = new GenericXmlApplicationContext(path);
+	OrderSystem os = ctx.getBean(menu, OrderSystem.class);
+	String orderName = "";
+	if (menu.equals("kor")) {
+		orderName="한식";
+	} else {
+		orderName="인도식";
+	}
+%><%=res %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
+```
+
+ex5_menu.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="menu1" class="ex5.KorOrder" />
+	<bean id="menu2" class="ex5.IndoOrder" />
+	<bean id="kor" class="ex5.OrderSystem">
+		<property name="menu" ref="menu1" />
+	</bean>
+	<bean id="indo" class="ex5.OrderSystem">
+		<property name="menu" ref="menu2" />
+	</bean>
+
+</beans>
+```
+
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
