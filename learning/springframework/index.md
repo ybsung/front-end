@@ -107,6 +107,84 @@ sqlplus / as sysdba
   - Stop and start server
   - Check `ojdbc6.jar` in `Apache Tomcat v9.0` of `Package Explorer`
 
+## Ex1
+
+- Over `spring123/src` > new > Class
+  - Package : `ex`
+  - Name : `Ex1_MessageApp`
+  - Code
+```
+package ex1;
+
+public class Ex1_MessageApp {
+	private String msg;
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	public String pringMsg() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("당신이 입력한 메시지:").append(msg);
+		sb.append("입니다.");
+		return sb.toString();
+	}
+}
+```
+
+## JSP
+
+- over `spring123` > `Spring Tools` > `Add Spring Project Nature`
+- over `ex1` > new > other > Spring Bean Configuration File : DI with XML 
+  > next > ex1 > next > check `beans` and `p` > Finish
+- ex1.xml
+  - ctrl + space : auto completion, <p + ctrl + space, ex1 + ctrl + space
+  - code
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="msg" class="ex1.Ex1_MessageApp">
+		<property name="msg" value="안녕하세요~!"></property>
+	</bean>
+
+</beans>
+```
+
+- JSP
+  - Over `WebContent` > New > Other > JSP > ex1_di.jsp
+  - Code
+```
+<%@page import="ex1.Ex1_MessageApp"%>
+<%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+// Spring Container를 생성
+	ApplicationContext ctx = new GenericXmlApplicationContext("ex1/ex1.xml");
+
+// Ex1_MessageApp의 레퍼런스를 획득 -> id로 참조
+	Ex1_MessageApp em1 = ctx.getBean("msg", Ex1_MessageApp.class);
+
+// 잘 사용
+	String message = em1.pringMsg();
+%>
+<p style="color:blue">
+	<%=message %>
+</p>
+</body>
+</html>
+```
+
 
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
