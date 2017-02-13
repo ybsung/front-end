@@ -715,7 +715,7 @@ AS-IS
 
 ### ex6_auto1.jsp
 
-``
+```
 <%@page import="ex6.Ex6_AutoWired1"%>
 <%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
