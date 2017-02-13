@@ -652,5 +652,98 @@ ex6_auto1.jsp
 
 Over `ex6_auto1.jsp` > Run as > Run on Server 
 
+## Ex6 with context
+Add ex6_auto1.xml Namespaces context
+
+Ex6_autoWired1.java
+```
+package ex6;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Ex6_AutoWired1 {
+	@Autowired
+	private String name;
+	
+	// ByName으로 검색을 함. Bean의 아이디나 이름이 검색할 property와 동일할 이름일 경우
+//	@Autowired
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+	
+	// ByType으로 검색을 함. 같은 이름의 빈이 없을 경우, 같은 타입으로 검색
+	
+	public String printName() {
+		return "당신의 이름은" + name + "입니다.";
+	}
+}
+```
+
+## Ex7_Resource
+
+Ex7_Resource.java
+```
+package ex6;
+
+import javax.annotation.Resource;
+
+public class Ex7_Resource {
+	@Resource
+	private String msg;
+	
+	public String printMsg() {
+		return "당신의 메세지 : " + msg;
+	}
+}
+```
+
+ex7.res.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:annotation-config/>
+	<bean id="msg1" class="java.lang.String">
+		<constructor-arg>
+			<value>AOP 진도 나답니다.</value>
+		</constructor-arg>
+	</bean>
+	<bean id="msg2" name="msg3" class="java.lang.String">
+		<constructor-arg>
+			<value>재미있는 Spring MVC</value>
+		</constructor-arg>
+	</bean>
+	<bean id="resv" class="ex6.Ex7_Resource" />
+</beans>
+```
+
+ex7_auto1.jsp
+```
+<%@page import="ex6.Ex7_Resource"%>
+<%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	ApplicationContext ctx = new GenericXmlApplicationContext("ex6/ex7_res.xml");
+	Ex7_Resource ea = ctx.getBean("resv", Ex7_Resource.class);
+%><p> <%=ea.printMsg() %> </p>
+</body>
+</html>
+```
+
+
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
