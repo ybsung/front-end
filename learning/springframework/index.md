@@ -1574,6 +1574,336 @@ public class MemberController {
 </html>
 ```
 
+### index.jsp in `WebContent`/`WEB-INF`/`jsp`
+
+```
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>jsp/index.jsp</title>
+<style>
+	body {background: orange;}
+</style>
+</head>
+<body>
+	<a href="sayhello">첫번째 예제</a>
+	<a href="memberjoin">세번째 예제</a>
+</body>
+</html>
+```
+
+### Output
+
+```
+<div>
+	<form action="addmember" method="post">
+		<p> id : <input type="text" name="id" id="id"> </p>
+		<p> password : <input type="text" name="password" id="password"> </p>
+		<p> name : <input type="text" name="name" id="name"> </p>
+		<p> address : <input type="text" name="address" id="address"> </p>
+		<p> <input type="submit" value="addMember"> </p>
+	</form>
+</div>
+```
+
+- 1,2,3,4입력
+
+```
+Info : 3 님 반갑습니다. 당신의 정보중 주소는 4 입니다. ^^
+```
+
+### Create SQL Table
+
+- Run `command` propt
+- `sqlplus myora/test09`
+- `ed member`
+```
+create table member(
+num number primary key,
+id varchar2(10) not null,
+password varchar2(10) not null,
+name varchar2(24),
+address varchar2(100)
+);
+create sequence member_seq 
+increment by 1 
+start with 1;
+```
+- `@member`
+
+### context.xml in `WebContent`/`META-INF`
+
+- Over `META-INF` > `New` > `Other...` > `XML File` > File name : `context.xml` > `Finish`
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+ <Resource
+  name="jdbc/myora"
+  auth="Container"
+  type="javax.sql.DataSource"
+  driverClassName="oracle.jdbc.driver.OracleDriver"
+  url="jdbc:oracle:thin:@localhost:1521:xe"
+  username="myora"
+  password="test09"
+  maxActive="20"
+  maxIdle="10"
+  maxWait="-1"
+ />
+</Context>
+```
+
+### Update `kosta-servlet.xml` `WebContent`/`WEB-INF`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="or.kosta.mvc" />
+	<mvc:annotation-driven />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	
+	<!-- dataSource setting -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/myora"></property>
+	</bean>
+	
+	<!-- MyBatis setting -->
+	<bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		
+	</bean>
+	
+	<bean
+		id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>
+```
+
+### config.xml
+
+From http://www.mybatis.org/mybatis-3/ko/getting-started.html
+
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+  </mappers>
+</configuration>
+```
+
+Over `src` > `New` > `Other..` > `XML` >
+Folder : spring0214/srcor/kosta/config
+File name : config
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+	<typeAlias type="or.kosta.vo.MemberVO" alias="mvo" />
+</typeAliases>
+</configuration>
+```
+
+### member.xml
+
+From
+
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis.example.BlogMapper">
+  <select id="selectBlog" resultType="Blog">
+    select * from Blog where id = #{id}
+  </select>
+</mapper>
+```
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="add" parameterType="mvo">
+	insert into member values(member_seq.nextVal,#{id},#{password},#{name},#{address})
+	</insert>
+	<select id="list" resultType="mvo">
+		select num, is, name from member order by 1 desc
+	</select>
+	<select id="detail" parameterType="int" resultType="mvo">
+		select num,id,password,name,address from member where num=#{num}
+	</select>
+</mapper>
+```
+
+### Update `kosta-servlet.xml` `WebContent`/`WEB-INF`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="or.kosta.mvc" />
+	<mvc:annotation-driven />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	
+	<!-- dataSource setting -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/myora"></property>
+	</bean>
+	
+	<!-- MyBatis setting -->
+	<bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:or/kosta/config/config.xml" />
+		<property name="mapperLocations" value="classpath*:or/kosta/mapper/*.xml"></property>
+	</bean>
+	
+	<!-- Mybatis Template configure -->
+	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="factoryBean" />
+	</bean>
+	
+	<bean
+		id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>
+```
+
+
+
+
+
+## DAO
+
+### DAO
+
+- Over `src`
+  - Source folder : or.kosta.mv.dao
+  - Name : MemberDao
+
+```java
+package or.kosta.mvc.dao;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import or.kosta.vo.MemberVO;
+
+@Repository
+public class MemberDao {
+	@Autowired
+	private SqlSessionTemplate ss;
+	
+	public void addMember(MemberVO vo) {
+		ss.insert("member.add", vo);
+	}
+	public List<MemberVO> getList() {
+		return ss.selectList("member.list");
+	}
+	public MemberVO getDetail(int num) {
+		return ss.selectOne("member.detail", num);
+	}
+}
+```
+
+### Update `MemberController.java`
+
+```
+package or.kosta.mvc.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import or.kosta.mvc.dao.MemberDao;
+import or.kosta.vo.MemberVO;
+
+@Controller
+public class MemberController {
+	@Autowired
+	private MemberDao memberDao;
+
+	@RequestMapping(value="/memberjoin")
+	public String memForm() {
+		return "member";
+	}
+	
+	@RequestMapping(value="/addmember", method=RequestMethod.POST)
+	public ModelAndView memberAdd(MemberVO v) {
+		System.out.println("아이디 검수:" + v.getId() + "," + v.getName());
+		
+		memberDao.addMember(v);
+		
+		ModelAndView mav = new ModelAndView("success");
+		mav.addObject("vo", v);
+		return mav;
+	}
+}
+```
+
+## TroubleShooting
+
+- STS > Project > Clean
+- Servers > Clean
+- Servers > `Clean Tomcat Work Directory...`
+- `Refresh` in `Project Explorer`
+- Restart `OracleServiceXE` service in `Service`
+- Restart `OracleXETNSListener` in `Service`
+
 ## Reference
+
+- http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
+- https://mvnrepository.com/
+- http://blog.mybatis.org/
+- http://www.mybatis.org/mybatis-3/ko/
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
 - http://blog.naver.com/javabook
