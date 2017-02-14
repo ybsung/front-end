@@ -75,12 +75,13 @@ http://projects.spring.io/spring-framework/
   - Over `index.html`
     - `Run as` > `Run on server` > Manually define a new server > `Apache` > `Tomcat v9.0 Server`> Check `Always use this server` 
 
+- Default web browser
+  - `Window` > `Web Browser` > `Chrome`
+
 - Server setting
   - server.xml in Servers/Tomcat v9.0 Server at localhost-config
-    - <Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>
-    - 
-  window > web browser > chrome
-
+    - `<Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>`
+    
 - Run server
   - Over `spring123`
   - Run As > Run on Server
