@@ -25,6 +25,7 @@ Note for Spring Framework
 ## Environment
 
 ### Minimum requirements
+
 http://projects.spring.io/spring-framework/
   - JDK 6+ for Spring Framework 4.x
   - JDK 5+ for Spring Framework 3.x
@@ -52,7 +53,8 @@ http://projects.spring.io/spring-framework/
     - Unzip it into `C:\SpringBasic\service\`
   - Oracle XE
 
-## spring123 project
+### New project
+
 - New project
   - Over `Servers` > `New` > `Dynamic Web Project`
     - Project name : `spring123`
@@ -65,13 +67,14 @@ http://projects.spring.io/spring-framework/
     - 'Next'
     - 'Next'
     - Check `Generate web.xml deployment descriptor`
-      
+
 - New index and run server
   - Over `spring123` > `Other...` > 
     - Search `html` > select `HTML file` > `Next`
     - index.html > 'Finish'
   - Over `index.html`
     - `Run as` > `Run on server` > Manually define a new server > `Apache` > `Tomcat v9.0 Server`> Check `Always use this server` 
+
 - Server setting
   - server.xml in Servers/Tomcat v9.0 Server at localhost-config
     - <Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>
@@ -91,30 +94,37 @@ sqlplus / as sysdba
   - @adduser
   - conn myora/test09
 
-## Maven
-- over spring123
-  - configurate
-    - conver to maven
+### To Maven
+
+- Over `spring123` > `Configurate` > `Convert to Maven`
+
+### Add Spring Project Nature
+
+- Over `spring123` > `Spring Tools` > `Add Spring Project Nature`
+
+### pom.xml
+
+- spring123/pom.xml
+  - Add the following code above `<build>`
+```
+<dependencies>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>4.3.6.RELEASE</version>
+</dependency>
+</dependencies>
+```
+If there is any dependency errors, please remove the folder in `C:\Users\username\.m2`.
     
-- spring123/pon.xml
-    above <build>
-    ```
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.3.6.RELEASE</version>
-        </dependency>
-    </dependencies>
-    ```
-    C:\Users\kosta00\.m2
-- oracle xe ojdbc6.jar
+### oracle xe ojdbc6.jar
+
   - Copy C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar into C:\SpringBasic\service\apache-tomcat-9.0.0.M17-windows-x64\apache-tomcat-9.0.0.M17\lib
   - refresh
   - Stop and start server
   - Check `ojdbc6.jar` in `Apache Tomcat v9.0` of `Package Explorer`
 
-## index.html
+### index.html
 
 ```
 <!DOCTYPE html>
@@ -160,7 +170,6 @@ public class Ex1_MessageApp {
 
 ###  ex1.xml
 
-- over `spring123` > `Spring Tools` > `Add Spring Project Nature`
 - over `ex1` > new > other > Spring Bean Configuration File : DI with XML 
   > next > ex1 > next > check `beans` and `p` > Finish
   - ctrl + space : auto completion, <p + ctrl + space, ex1 + ctrl + space
