@@ -1890,6 +1890,442 @@ public class MemberController {
 }
 ```
 
+## 
+
+### Update `MemberController.java`
+
+```java
+package or.kosta.mvc.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import or.kosta.mvc.dao.MemberDao;
+import or.kosta.vo.MemberVO;
+
+@Controller
+public class MemberController {
+	@Autowired
+	private MemberDao memberDao;
+
+	@RequestMapping(value="/memberjoin")
+	public String memForm() {
+		return "member";
+	}
+	
+	@RequestMapping(value="/addmember", method=RequestMethod.POST)
+	public ModelAndView memberAdd(MemberVO v) {
+		System.out.println("아이디 검수:" + v.getId() + "," + v.getName());
+		memberDao.addMember(v);
+		ModelAndView mav = new ModelAndView("redirect:/listmember");
+		// mav.addObject("vo", v);
+		return mav;
+	}
+	
+	@RequestMapping(value="/listmember")
+	public ModelAndView memberList() {
+		ModelAndView mav = new ModelAndView("memberList");
+		List<MemberVO> list = memberDao.getList();
+		mav.addObject("list", list);
+		return mav;
+	}
+}
+
+```
+
+### Update pom.xml
+
+```xml
+<dependency>
+    <groupId>jstl</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+```
+
+### memberlist.jsp in 
+
+```
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>member list</title>
+</head>
+<body>
+	<c:forEach var="e" items="${list}">
+	<p>${e.num } | ${e.name } | ${e.id } <a href="">detail</a></p>
+	</c:forEach>
+	<a href="memberjoin">가입폼</a>
+</body>
+</html>
+```
+
+## Exception
+
+## MyExceptionHandler.java
+
+```
+package or.kosta.mvc.exception;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@ControllerAdvice
+public class MyExceptionHandler {
+	@ExceptionHandler(Exception.class)
+	public String myHandlerException(Exception e) {
+		String returnval = "exception";
+		if (e instanceof ArrayIndexOutOfBoundsException) {
+			returnval = "arrayException";
+		}
+		System.out.println("예외 발생");
+		return returnval;
+	}
+}
+```
+
+### TetException.java
+
+```
+package or.kosta.mvc.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class TetException {
+	@RequestMapping(value="/testEx")
+	public ModelAndView testview() {
+		ModelAndView mav = new ModelAndView();
+		mav.setView("index");
+		int num = 10/0;
+		return mav;
+	}
+}
+```
+
+### arrayException.jsp
+
+```
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+배열의 범위를 넘었어요
+</body>
+</html>
+```
+
+### exception.jsp
+
+```
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<script>
+	$(function(){
+
+	});
+</script>	    
+<!--   -->
+<div id="article">
+	<div id="header2">
+		<h1>  uri : jQuery : </h1>
+		<p id="time">2016. 6. 1.</p>
+	</div>
+	<div id="content">
+		<h3>지금 알수 없는 예외가 발생하여 해당 작업이 수행 하지 못하였습니다. </h3>
+	</div>
+</div>
+```
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+배열의 범위를 넘었어요
+</body>
+</html>
+
+### Output
+
+### MyHandlerInterceptor.java
+
+```
+package or.kosta.mvc.inter;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+public class MyHandlerInterceptor 
+extends HandlerInterceptorAdapter{
+// Controller에 들어가기전 접근
+@Override
+public boolean preHandle(HttpServletRequest request,
+HttpServletResponse response, Object handler)
+throws Exception {
+  System.out.println("preHandle 동작!");
+  HandlerMethod method = (HandlerMethod) handler;
+  System.out.println("Bean:"+method.getBean());
+  System.out.println("Method:"+method.getMethod());
+  return true;
+}
+/*
+ *  postHandle() 메소드는 컨트롤러를 실행하고 난 후에 호출된다.
+ *   이 메소드에는 컨트롤러가 돌려준 ModelAndView 타입의 정보가 제공되서
+ *    컨트롤러 작업 결과를 참조하거나 조작할 수 있다.
+ * */
+@Override
+public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+ModelAndView modelAndView) throws Exception {
+System.out.println("viewName:"+modelAndView.getViewName());
+modelAndView.addObject("today", 
+new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+
+}
+}
+```
+
+## Restful
+
+### Update pom.xml
+
+```
+<!-- Jackson Data-bind for rest ful -->
+  <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+  <dependency>
+   <groupId>com.fasterxml.jackson.core</groupId>
+   <artifactId>jackson-databind</artifactId>
+   <version>2.8.6</version>
+  </dependency>
+```
+
+### Update kosta-servlet.xml
+
+```
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/my*"/>
+			<!--  interceptor를 제외할 경우 -->
+			<mvc:exclude-mapping path="/mytest" />
+			<bean class="or.kosta.mvc.inter.MyHandlerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- dataSource setting -->
+```
+
+### Update DefaultController.java
+
+```java
+	@RequestMapping(value="/myindex")
+	public String myDefaultView() {
+		return "index";
+	}
+	// 적용을 제외 하려고 한다면?
+	@RequestMapping(value="/mytest")
+	public String myDefaultView1() {
+		return "index";
+	}
+```
+
+### SpringRestController.java
+
+```
+package or.kosta.mvc.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import or.kosta.vo.MemberVO;
+
+@RestController
+@RequestMapping("/members")
+public class SpringRestController {
+
+	// 문자열을 반환 하는 경우 
+	@RequestMapping("/hello")
+	public String sayHello(){
+		return "Hello Rest Ful";
+	}
+	//객체를 JSON으로 반환 하는 경우
+	
+	// 웹에서 요청시에 jackson-databind 라이브러리가 있어야 함.
+	@RequestMapping("/respVO")
+	public MemberVO respVO(){
+		MemberVO v = new MemberVO();
+		v.setId("xman");
+		v.setName("김길동");
+		v.setNum(8);
+		v.setAddress("인천");
+		v.setPassword("test00");
+		return v;
+	}
+	
+	// 컬랙션 타입의 객체를 반환하여 JSON-ARRAY로 반환하는 경우
+	@RequestMapping("/respListErrrorNot")
+	//@RequestMapping("/respList)
+	//public List<MemberVO> respList(){
+	public ResponseEntity<List<MemberVO>> respListNot(){	
+		List<MemberVO> list = new ArrayList<>();
+		for(int i=0; i<=12; i++){
+			MemberVO v = new MemberVO();
+			v.setId("xman"+i);
+			v.setName("김길동"+i);
+			v.setNum(i);
+			v.setAddress("인천"+i);
+			v.setPassword("test0"+i);
+			list.add(v);
+		}
+		//return list;
+		//return new ResponseEntity<>(list,HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(list,HttpStatus.BAD_REQUEST);
+	}
+	//http://localhost/springrest/members/respList2?code=1
+	@RequestMapping("/respList2")
+	public ResponseEntity<List<MemberVO>> respList(String code){	
+		List<MemberVO> list = new ArrayList<>();
+		 try{
+			 if(code.equals("1")){
+					for(int i=0; i<=12; i++){
+						MemberVO v = new MemberVO();
+						v.setId("xman"+i);
+						v.setName("김길동"+i);
+						v.setNum(i);
+						v.setAddress("인천"+i);
+						v.setPassword("test0"+i);
+						list.add(v);
+					}	
+				}else{
+					for(int i=0; i<=12; i++){
+						MemberVO v = new MemberVO();
+						v.setId("zman"+i);
+						v.setName("김걸단"+i);
+						v.setNum(i);
+						v.setAddress("인천"+i);
+						v.setPassword("xxoo"+i);
+						list.add(v);
+					}
+				}
+			 return new ResponseEntity<>(list,HttpStatus.OK);
+		 }catch (Exception e) {
+	
+			 return new ResponseEntity<>(list,HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+}
+```
+
+### res.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<script>
+	$(function(){
+
+	});
+</script>	    
+<!--   -->
+<div id="article">
+	<div id="header2">
+		<h1>  uri : jQuery : </h1>
+		<p id="time">2016. 6. 1.</p>
+	</div>
+	<div id="content">
+	${msg }
+	</div>
+</div>
+```
+
+### restform.jsp
+
+```
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script>
+	$(function(){
+		//{"num":0,"id":"zman0","password":"xxoo0","name":"김걸단0","address":"인천0"},
+	
+		$('#btn').click(function(){
+			console.log($('#codev').val());
+			$('#target').html("");
+			$.getJSON("members/respList2?code="+$('#codev').val(),
+					function(d){
+				  $.each(d, function(k, v) {
+					$('#target').append("<p>"+v.num+":"+v.id+":"+v.name+"</p>");
+				  });
+		    });
+
+		});
+	});
+</script>  
+</head>
+<body>
+	<form method="post" action="">
+		<select name="code" id="codev">
+			<option>1</option>
+			<option>2</option>
+		</select>
+		<input type="button" value="click" id="btn">
+	</form>
+	<div id="target"></div>
+</body>
+</html>
+```
+
+### Update DefaultController.java
+
+```java
+	// Restful에 사용될 Ajax 페이지 처리 폼
+	@RequestMapping(value="/rform")
+	public String restform() {
+		return "restform";
+	}
+```
+
 ## TroubleShooting
 
 - STS > Project > Clean
