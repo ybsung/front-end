@@ -54,15 +54,22 @@ http://projects.spring.io/spring-framework/
 
 ## spring123 project
 - New project
-  - Over `Servers` > New > Dynamic Web Project
+  - Over `Servers` > `New` > `Dynamic Web Project`
     - Project name : `spring123`
     - `New Runtime...`
-      - Apache Tomcat v9.0
-      - Next > `Browse...` >
-      - C:\SpringBasic\service\apache-tomcat-9.0.0.M17-windows-x64\apache-tomcat-9.0.0.M17
+      - `Apache` > Select `Apache Tomcat v9.0` > `Next`
+      - `Browse...`
+      	- Select `C:\SpringBasic\service\apache-tomcat-9.0.0.M17-windows-x64\apache-tomcat-9.0.0.M17`
+        - `Finish`
+      - `Finish`
+    - 'Next'
+    - 'Next'
+    - Check `Generate web.xml deployment descriptor`
+      
 - New index and run server
-  - Over `spring123` > other > search `html` > select `HTML file` > index.html 
-    - Check `Generate web.xml`
+  - Over `spring123` > `Other...` > 
+    - Search `html` > select `HTML file` > `Next`
+    - index.html > 'Finish'
   - Over `index.html`
     - `Run as` > `Run on server` > Manually define a new server > `Apache` > `Tomcat v9.0 Server`> Check `Always use this server` 
 - Server setting
@@ -907,6 +914,8 @@ public class Ex7_Resource {
 </html>
 ```
 
+----------------------------------------------------------------
+
 # MVC & Restful ( JSON, xml, path value )
 
 - DI (IoC) : MVC 패턴
@@ -922,7 +931,161 @@ public class Ex7_Resource {
 ![mvc-context-hierarchy](http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/images/mvc-context-hierarchy.png.pagespeed.ce.LDigfAkmpx.png)
 From http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
 
+## Environment
 
+1. spring dynamic web project
+2. to maven
+3. add spring project nature
+
+### pom.xml에 maven 의존 추가
+
+#### Spring JDBC
+
+https://mvnrepository.com/artifact/org.springframework/spring-jdbc/4.3.6.RELEASE
+
+```
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>4.3.6.RELEASE</version>
+</dependency>
+```
+
+#### Mybatis
+
+https://mvnrepository.com/artifact/org.mybatis/mybatis/3.4.2
+
+```
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.4.2</version>
+</dependency>
+```
+
+#### Mybatis Spring
+
+https://mvnrepository.com/artifact/org.mybatis/mybatis-spring/1.3.1
+
+```
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>1.3.1</version>
+</dependency>
+```
+
+#### Spring Web
+
+- Search web
+https://mvnrepository.com/artifact/org.springframework/spring-web/4.3.6.RELEASE
+
+```
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-web</artifactId>
+    <version>4.3.6.RELEASE</version>
+</dependency>
+```
+
+#### Spring web MVC
+
+- Search web mvc
+https://mvnrepository.com/artifact/org.springframework/spring-webmvc/4.3.6.RELEASE
+
+```
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>4.3.6.RELEASE</version>
+</dependency>
+```
+
+#### AspectJ Weaver
+
+- Search aspectjweaver
+https://mvnrepository.com/artifact/org.aspectj/aspectjweaver/1.8.10
+
+```
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.8.10</version>
+</dependency>
+```
+
+### WebContent/WEB_INF/web.xml
+
+AS-IS
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>spring0214</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+```
+
+TO-BE
+
+- Copy `org.springframework.web.servlet.DispatcherServlet` in http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc-servlet
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>spring0214</display-name>
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>EUC-KR</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+  	<servlet-name>kosta</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>kosta</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+```
+
+### kosta-servlet.xml
+
+- Add configutaion
+  - kosta-servlet.xml
+  - `Next`
+  - Check `beans`, `context`, `mvc`
 
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
+- http://blog.naver.com/javabook
