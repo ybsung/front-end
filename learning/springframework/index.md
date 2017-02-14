@@ -374,7 +374,7 @@ public class Ex2_Message {
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -549,7 +549,7 @@ public class Ex3_ServiceImple implements Ex3_Service{
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -723,7 +723,7 @@ public interface MenuInter {
 ```
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -849,7 +849,7 @@ AS-IS
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1019,7 +1019,7 @@ public class Ex7_Resource {
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1296,8 +1296,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DefaultController {
 	
 	// 기본 페이지 설정
-	@RequestMapping(value="/index")
+	@RequestMapping(value={"/index"})
 	public String defaultPage() {
+		System.out.println("test");
 		return "index";
 	}
 }
@@ -1313,7 +1314,7 @@ AS-IS
 ```jsp
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1329,7 +1330,7 @@ TO-BE
 ```jsp
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1355,7 +1356,7 @@ TO-BE
 ```jsp
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1392,7 +1393,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HelloContaoller {
 
 		@RequestMapping(value="/hello", method=RequestMethod.GET)
-		public ModelAndView sayHello () {
+		public ModelAndView sayhello () {
 			ModelAndView mav = new ModelAndView();
 			//View의 이름을 지정
 			mav.setViewName("sayhello");
@@ -1408,7 +1409,7 @@ public class HelloContaoller {
 ```jsp
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1427,7 +1428,7 @@ public class HelloContaoller {
 ```jsp
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1505,7 +1506,7 @@ public class MemberVO {
 ```jsp
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1515,7 +1516,7 @@ public class MemberVO {
 	<div>
 		<form action="addmember" method="post">
 			<p> id : <input	type="text" name="id" id="id"> </p>
-			<p> password : <input	type="text" name="password" id="password"> </p>
+			<p> password : <input	type="password" name="password" id="password"> </p>
 			<p> name : <input	type="text" name="name" id="name"> </p>
 			<p> address : <input	type="text" name="address" id="address"> </p>
 			<p> <input type="submit" value="addMember"> </p>
@@ -1560,7 +1561,7 @@ public class MemberController {
 ```jsp
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1579,7 +1580,7 @@ public class MemberController {
 ```
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1762,7 +1763,7 @@ From
 	insert into member values(member_seq.nextVal,#{id},#{password},#{name},#{address})
 	</insert>
 	<select id="list" resultType="mvo">
-		select num, is, name from member order by 1 desc
+		select num, id, name from member order by 1 desc
 	</select>
 	<select id="detail" parameterType="int" resultType="mvo">
 		select num,id,password,name,address from member where num=#{num}
@@ -1954,7 +1955,7 @@ public class MemberController {
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -1993,7 +1994,7 @@ public class MyExceptionHandler {
 }
 ```
 
-### TetException.java
+### TestException.java
 
 ```
 package or.kosta.mvc.controller;
@@ -2002,7 +2003,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TetException {
+public class TestException {
 	@RequestMapping(value="/testEx")
 	public ModelAndView testview() {
 		ModelAndView mav = new ModelAndView();
@@ -2018,7 +2019,7 @@ public class TetException {
 ```
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -2054,7 +2055,7 @@ public class TetException {
 
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -2276,7 +2277,7 @@ public class SpringRestController {
 ```
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -2320,7 +2321,7 @@ public class SpringRestController {
 
 ```java
 	// Restful에 사용될 Ajax 페이지 처리 폼
-	@RequestMapping(value="/rform")
+	@RequestMapping(value="rform")
 	public String restform() {
 		return "restform";
 	}
