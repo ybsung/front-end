@@ -907,5 +907,22 @@ public class Ex7_Resource {
 </html>
 ```
 
+# MVC & Restful ( JSON, xml, path value )
+
+- DI (IoC) : MVC 패턴
+- Client -> request -> Controller ( Spring container ) -> View ( Response ),  ObjectFactory ( -> Mode -> DAO -> JDBC Template, ORM )
+- Controller
+  - Spring Container
+    - Bean (DI)
+  - handleingMapping
+    - URL, method
+    - Model and view
+    - Resolver
+    
+![mvc-context-hierarchy](http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/images/mvc-context-hierarchy.png.pagespeed.ce.LDigfAkmpx.png)
+From http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
+
+
+
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
