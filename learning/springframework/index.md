@@ -1616,6 +1616,8 @@ public class MemberController {
 Info : 3 님 반갑습니다. 당신의 정보중 주소는 4 입니다. ^^
 ```
 
+## DB Setting
+
 ### Create SQL Table
 
 - Run `command` propt
@@ -1814,10 +1816,6 @@ From
 </beans>
 ```
 
-
-
-
-
 ## DAO
 
 ### DAO
@@ -1972,7 +1970,7 @@ public class MemberController {
 
 ## Exception
 
-## MyExceptionHandler.java
+### MyExceptionHandler.java
 
 ```
 package or.kosta.mvc.exception;
