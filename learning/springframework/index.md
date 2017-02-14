@@ -75,26 +75,6 @@ http://projects.spring.io/spring-framework/
   - Over `index.html`
     - `Run as` > `Run on server` > Manually define a new server > `Apache` > `Tomcat v9.0 Server`> Check `Always use this server` 
 
-- Default web browser
-  - `Window` > `Web Browser` > `Chrome`
-
-- Server setting
-  - server.xml in Servers/Tomcat v9.0 Server at localhost-config
-    - `<Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>`
-    
-- Run server
-  - Over `spring123`
-  - Run As > Run on Server
-
-- SQL
-sqlplus / as sysdba
-  - sho user;
-  - ed adduser (adduser.sql)
-    - create user myora identified by test09 default tablespace users;
-    - grant resource,connect, create view to myora;
-  - @adduser
-  - conn myora/test09
-
 ### To Maven
 
 - Over `spring123` > `Configurate` > `Convert to Maven`
@@ -139,6 +119,33 @@ test
 </body>
 </html>
 ```
+
+### STS ( Spring Tool Suite ), Server, and SQL settings
+
+#### STS
+
+- Default web browser
+  - `Window` > `Web Browser` > `Chrome`
+
+#### Server
+
+- Server setting
+  - server.xml in Servers/Tomcat v9.0 Server at localhost-config
+    - `<Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>`
+    
+- Run server
+  - Over `spring123`
+  - Run As > Run on Server
+
+#### SQL
+
+sqlplus / as sysdba
+  - sho user;
+  - ed adduser (adduser.sql)
+    - create user myora identified by test09 default tablespace users;
+    - grant resource,connect, create view to myora;
+  - @adduser
+  - conn myora/test09
 
 ## Ex1
 
@@ -1121,6 +1128,127 @@ TO-BE
   - kosta-servlet.xml
   - `Next`
   - Check `beans`, `context`, `mvc`
+
+- over `WebContent` > New > Folder > `resources`
+- Create `css`, `js`, `img` folders in `resources`
+- Create `jsp` in `WEB-INF`
+
+- new class
+  - package : `or.kosta.mvc.controller`
+  - Name : DefaultController
+  - `Finish`
+
+AS-IS
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+</beans>
+```
+
+TO-BE
+
+```jsp
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="or.kosta.mvc" />
+	<mvc:annotation-driven />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<bean
+		id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>
+```
+
+### DefaultController.js
+
+```java
+package or.kosta.mvc.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class DefaultController {
+	
+	// 기본 페이지 설정
+	@RequestMapping(value="/index")
+	public String defaultPage() {
+		return "index";
+	}
+}
+```
+
+### WebContent\index.jsp
+
+- Over `WebContent` > New > Other
+  - Search `JSP` > Select `JSP File`
+  - File name : `index.jsp` > `FINISH`
+
+AS-IS
+```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
+```
+
+TO-BE
+```jsp
+
+```
+
+### WebContent\WEB-INF\index.jsp
+
+- Over `WEB-INF` > New > Other
+  - Search `JSP` > Select `JSP File`
+  - File name : `index.jsp` > `FINISH`
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>jsp/index.jsp</title>
+<style>
+	body {background: orange;}
+</style>
+</head>
+<body>
+	<a href="">첫번째 예제</a>
+</body>
+</html>
+```
 
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
