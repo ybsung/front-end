@@ -933,11 +933,37 @@ From http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsi
 
 ## Environment
 
-1. spring dynamic web project
-2. to maven
-3. add spring project nature
+### New project
 
-### pom.xml에 maven 의존 추가
+- Over Servers > New > Dynamic Web Project
+  - Project name : spring0214
+  - 'Next'
+  - 'Next'
+  - Check Generate web.xml deployment descriptor
+
+### To Maven
+
+- Over `spring0214` > `Configure` > `Conver to Maven`
+
+### Add Spring Project Nature
+
+- Over `spring0214` > `Spring Tools` > `Add Spring Project Nature`
+
+### Add dependencies in pom.xml
+
+#### Spring
+
+http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-maven-dependency-management
+
+```
+<dependencies>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>4.3.6.RELEASE</version>
+    </dependency>
+</dependencies>
+```
 
 #### Spring JDBC
 
