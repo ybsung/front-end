@@ -65,28 +65,32 @@ http://projects.spring.io/spring-framework/
         - `Finish`
       - `Finish`
     - 'Next'
-    - 'Next'
-    - Check `Generate web.xml deployment descriptor`
+  - `Next`
+  - Check `Generate web.xml deployment descriptor`
 
 - New index and run server
   - Over `spring123` > `Other...` > 
-    - Search `html` > select `HTML file` > `Next`
+    - Search `html` > Select `HTML file` > `Next`
     - index.html > 'Finish'
   - Over `index.html`
-    - `Run as` > `Run on server` > Manually define a new server > `Apache` > `Tomcat v9.0 Server`> Check `Always use this server` 
+    - `Run as` > `Run on Server`
+    - Choose `Manually define a new server` > `Apache` > `Tomcat v9.0 Server`> Check `Always use this server`
+    - `Finish`
 
 ### To Maven
 
-- Over `spring123` > `Configurate` > `Convert to Maven`
+- Over `spring123` > `Configure` > `Convert to Maven Project` > `Finish`
 
 ### Add Spring Project Nature
 
 - Over `spring123` > `Spring Tools` > `Add Spring Project Nature`
 
-### pom.xml
+### pom.xml in `spring123`
 
-- spring123/pom.xml
-  - Add the following code above `<build>`
+- Select `pom.xml` file
+- Select `pom.xml` tab
+- Add the following code above `<build>`
+
 ```
 <dependencies>
 <dependency>
@@ -100,10 +104,10 @@ If there is any dependency errors, please remove the folder in `C:\Users\usernam
     
 ### oracle xe ojdbc6.jar
 
-  - Copy C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar into C:\SpringBasic\service\apache-tomcat-9.0.0.M17-windows-x64\apache-tomcat-9.0.0.M17\lib
-  - refresh
+  - Copy `C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar` into `C:\SpringBasic\service\apache-tomcat-9.0.0.M17-windows-x64\apache-tomcat-9.0.0.M17\lib`
+  - Over `sping123` > `Refresh`
   - Stop and start server
-  - Check `ojdbc6.jar` in `Apache Tomcat v9.0` of `Package Explorer`
+  - Check if `ojdbc6.jar` in `Java Resources` / `Libraries` / `Apache Tomcat v9.0` of `Package Explorer` exists
 
 ### index.html
 
@@ -115,9 +119,14 @@ If there is any dependency errors, please remove the folder in `C:\Users\usernam
 <title>Insert title here</title>
 </head>
 <body>
-test
+Test
 </body>
 </html>
+```
+
+Output
+```
+Test
 ```
 
 ### STS ( Spring Tool Suite ), Server, and SQL settings
@@ -130,12 +139,11 @@ test
 #### Server
 
 - Server setting
-  - server.xml in Servers/Tomcat v9.0 Server at localhost-config
-    - `<Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>`
+  - server.xml in `Servers` / `Tomcat v9.0 Server at localhost-config`
+    - Replact the code at line 63 with `<Connector connectionTimeout="20000" port="80" URIEncoding="EUC-KR" protocol="HTTP/1.1" redirectPort="8443"/>`
     
 - Run server
-  - Over `spring123`
-  - Run As > Run on Server
+  - Over `spring123` > `Run As` > `Run on Server`
 
 #### SQL
 
@@ -151,7 +159,7 @@ sqlplus / as sysdba
 
 ### Ex1_MessageApp.java
 
-- Over `spring123/src` > new > Class
+- Over `spring123/src` > `New` > `Class`
   - Package : `ex`
   - Name : `Ex1_MessageApp`
 
@@ -178,8 +186,9 @@ public class Ex1_MessageApp {
 
 ###  ex1.xml
 
-- over `ex1` > new > other > Spring Bean Configuration File : DI with XML 
-  > next > ex1 > next > check `beans` and `p` > Finish
+- Over `ex1` > `New` > `Other...` > `Spring Bean Configuration File` : DI with XML 
+  > `Next` > ex1 > `Next` > Check `beans` and `p` > `Finish`
+- TIP > Auto completion
   - ctrl + space : auto completion, <p + ctrl + space, ex1 + ctrl + space
 
 ```
@@ -197,7 +206,7 @@ public class Ex1_MessageApp {
 
 ### ex_di.jsp
 
-- Over `WebContent` > New > Other > JSP > ex1_di.jsp
+- Over `WebContent` > New > Other > JSP > File name: `ex1_di.jsp` > `Finish`
 
 ```
 <%@page import="ex1.Ex1_MessageApp"%>
@@ -229,7 +238,17 @@ public class Ex1_MessageApp {
 </html>
 ```
 
+### Check output
+
+- Over `ex_di.jsp` > `Run as` > `Run on Server`
+
+```
+당신이 입력한 메세지:안녕하세요~!입니다.
+```
+
 ### Exam_Todate.java
+
+- Over `ex1` > `New` > `Class` > Name : `Exam_Todate` > `Finish`
 
 ```
 package ex1;
@@ -256,6 +275,9 @@ public class Exam_Todate {
 
 ### ex_di.xml
 
+- Over `ex1` > `New` > `Other...` > `Spring Bean Configuration File` 
+  > `Next` > File name : `ex_di` > `Next` > Check `beans` and `p` > `Finish`
+  
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -277,7 +299,7 @@ public class Exam_Todate {
 
 ### Ex2_Resource.java
 
-- Over `spring123/src` > new > Class > ex2 Ex2_Resource 
+- Over `spring123/src` > `New` > `Class` > Package: `ex2`, File name: `Ex2_Resource` 
 
 ```
 package ex2;
@@ -298,7 +320,7 @@ public class Ex2_Resource {
 
 ### Ex2_Message.java
 
-- Over `spring123/src` > new > Class > ex2 Ex2_Message
+- Over `spring123/src` > `New` > `Class` > Package: `ex2`, File name: `Ex2_Message`
   
 ```
 package ex2;
@@ -323,6 +345,9 @@ public class Ex2_Message {
 
 ### ex2_di.xml
 
+- Over `ex2` > `New` > `Other...` > `Spring Bean Configuration File` 
+  > `Next` > File name : `ex2_di` > `Next` > Check `beans` and `p` > `Finish`
+  
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -340,6 +365,8 @@ public class Ex2_Message {
 ```
 
 ### ex2_di.jsp
+
+- Over `WebContent` > New > Other > JSP > File name: ex2_di.jsp > `Finish`
 
 ```
 <%@page import="ex2.Ex2_Message"%>
@@ -364,9 +391,19 @@ public class Ex2_Message {
 </html>
 ```
 
+### Check output
+
+- Over `ex2_di.jsp` > `Run as` > `Run on Server`
+
+```
+김길동님 안녕하세요!
+```
+
 ## Exam DI
 
-### Exam_DI.java
+### Exam_DI.java in `ex2`
+
+- Over `ex2` > `New` > `Class` > Package: `ex2`, File name: `Exam_DI`
 
 ```
 package ex2;
@@ -393,6 +430,9 @@ public class Exam_DI {
 
 ### exam_di.xml
 
+- Over `ex2` > `New` > `Other...` > `Spring Bean Configuration File` 
+  > `Next` > File name : `exam_di` > `Next` > Check `beans` and `p` > `Finish`
+  
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -414,6 +454,8 @@ public class Exam_DI {
 
 ### Ex3_Service.java
 
+- Over `spring123/src` > `New` > `Class` > Package: `ex3`, File name: `Ex3_Service` 
+
 ```
 package ex3;
 
@@ -425,6 +467,8 @@ public interface Ex3_Service {
 ```
 
 ###Ex3_ServiceImple.java
+
+- Over `ex3` > `New` > `Class` > Name: `Ex3_ServiceImple`
 
 ```
 package ex3;
@@ -471,6 +515,9 @@ public class Ex3_ServiceImple implements Ex3_Service{
 
 ### ex3_const.xml
 
+- Over `ex3` > `New` > `Other...` > `Spring Bean Configuration File` 
+  > `Next` > File name : `ex3_const` > `Next` > Check `beans` and `p` > `Finish`
+  
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -493,6 +540,9 @@ public class Ex3_ServiceImple implements Ex3_Service{
 ```
 
 ### ex3_const.jsp
+
+- Over `WebContent` > New > Other > JSP > File name: ex3_const.jsp > `Finish`
+
 ```
 <%@page import="ex3.Ex3_Service"%>
 <%@page import="org.springframework.context.support.GenericXmlApplicationContext"%>
@@ -521,9 +571,20 @@ public class Ex3_ServiceImple implements Ex3_Service{
 </html>
 ```
 
+### Check output
+
+- Over `ex3_const.jsp` > `Run as` > `Run on Server`
+
+```
+Str : null★/ Num : RES :100000 
+RES :10010Name:김길동
+```
+
 ## Ex5
 
 ### OrderSystem.java
+
+- Over `spring123/src` > `New` > `Class` > Package: `ex5`, File name: `OrderSystem` 
 
 AS-IS
 
@@ -570,6 +631,8 @@ public class OrderSystem {
 ```
 
 ### KorOrder.java
+
+- Over `ex5` > `New` > `Class` > Name: `KorOrder` 
 
 ```
 package ex5;
@@ -1223,7 +1286,23 @@ AS-IS
 
 TO-BE
 ```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script>
+	window.onload = function() {
+		location = "index"
+	};
+</script>
+</head>
+<body>
 
+</body>
+</html>
 ```
 
 ### WebContent\WEB-INF\index.jsp
@@ -1249,6 +1328,96 @@ TO-BE
 </body>
 </html>
 ```
+
+### Output
+
+- Over `index.js` in `WebContent`
+
+```
+첫번째 예제
+```
+
+### HelloContaoller.java in `src`/`or.kosta.mvc.controller`
+
+```
+package or.kosta.mvc.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HelloContaoller {
+
+		@RequestMapping(value="/hello", method=RequestMethod.GET)
+		public ModelAndView sayHello () {
+			ModelAndView mav = new ModelAndView();
+			//View의 이름을 지정
+			mav.setViewName("sayhello");
+			//값을 지정
+			mav.addObject("msg", "안녕하세요~^^");
+			return mav;
+		}
+}
+```
+
+### sayHello.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>sayhello</title>
+</head>
+<body>
+	<div>
+		sayhello : ${msg}
+	</div>
+</body>
+</html>
+```
+
+### Update index.jsp in `WebContent` / `WEB-INF` / `jsp`
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>jsp/index.jsp</title>
+<style>
+	body {background: orange;}
+</style>
+</head>
+<body>
+	<a href="sayhello">첫번째 예제</a>
+</body>
+</html>
+```
+
+### Output
+
+- Over `index.js` in `WebContent`
+
+```
+첫번째 예제
+```
+
+- Tap `첫번째 예제`
+
+```
+sayhello : 안녕하세요~^^
+```
+
+
+
+
 
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
