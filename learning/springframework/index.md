@@ -632,7 +632,7 @@ public class OrderSystem {
 
 ### KorOrder.java
 
-- Over `ex5` > `New` > `Class` > Name: `KorOrder` 
+- Over `ex5` > `New` > `Class` > Name: `KorOrder`
 
 ```
 package ex5;
@@ -652,6 +652,8 @@ public class KorOrder implements MenuInter{
 
 ### IndoOrder.java
 
+- Over `ex5` > `New` > `Class` > Name: `IndoOrder`
+
 ```
 package ex5;
 
@@ -670,6 +672,8 @@ public class IndoOrder implements MenuInter{
 
 ### ChinaOrder.java
 
+- Over `ex5` > `New` > `Class` > Name: `ChinaOrder`
+
 ```
 package ex5;
 
@@ -679,6 +683,8 @@ public class ChinaOrder {
 ```
 
 ### MenuInter.java
+
+- Over `ex5` > `New` > `Class` > Name: `MenuInter`
 
 ```
 package ex5;
@@ -691,6 +697,9 @@ public interface MenuInter {
 
 ### ex5_menu.xml
 
+- Over `ex5` > `New` > `Other...` > `Spring Bean Configuration File` 
+  > `Next` > File name : `ex5_menu` > `Next` > Check `beans` and `p` > `Finish`
+  
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -708,6 +717,8 @@ public interface MenuInter {
 ```
 
 ### orderForm.jsp
+
+- Over `WebContent` > New > Other > JSP > File name: orderForm.jsp > `Finish`
 
 ```
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -734,6 +745,8 @@ public interface MenuInter {
 
 ### orderProcess.jsp
 
+- Over `WebContent` > New > Other > JSP > File name: orderProcess.jsp > `Finish`
+
 ```
 <%@page import="ex5.OrderSystem"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
@@ -755,6 +768,34 @@ public interface MenuInter {
 	}
 	String res = os.printMenu(orderName);
 %><%=res %>
+```
+
+### Check output
+
+- Over `orderForm.jsp` > `Run as` > `Run on Server`
+
+```html
+<div id="wrap">
+	<form method="post" action="orderProcess.jsp">
+		<select name="orderName">
+			<option value="kor">한식</option>
+			<option value="indo">인도식</option>
+		</select>
+		<input type="submit" value="send">
+	</form>
+</div>
+```
+
+- Select `한식` & `Send`
+
+```
+오늘의 메인 코스인 한식을 주문하셨군요 ^^한식/ 100000 won
+```
+
+- Select `인도식` & `Send`
+
+```
+오늘은 인도 요리를 주문하셨군요 ^^인도식/ 200000 won
 ```
 
 ## Ex 6 : Ex6_AutoWired1
@@ -1415,9 +1456,123 @@ public class HelloContaoller {
 sayhello : 안녕하세요~^^
 ```
 
+### MemberVO.java in `or.kosta.vo` package
 
+```
+package or.kosta.vo;
 
+public class MemberVO {
+	private int num;
+	private String id;
+	private String password;
+	private String name;
+	private String address;
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+}
+```
 
+### member.jsp in `WebContent`/`WEB-INF`/`jsp`
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>member.jsp</title>
+</head>
+<body>
+	<div>
+		<form action="addmember" method="post">
+			<p> id : <input	type="text" name="id" id="id"> </p>
+			<p> password : <input	type="text" name="password" id="password"> </p>
+			<p> name : <input	type="text" name="name" id="name"> </p>
+			<p> address : <input	type="text" name="address" id="address"> </p>
+			<p> <input type="submit" value="addMember"> </p>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+### MemberController in `src`/`or.kosta.mvc.controller`
+
+```
+package or.kosta.mvc.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import or.kosta.vo.MemberVO;
+
+@Controller
+public class MemberController {
+
+	@RequestMapping(value="/memberjoin")
+	public String memForm() {
+		return "member";
+	}
+	
+	@RequestMapping(value="/addmember", method=RequestMethod.POST)
+	public ModelAndView memberAdd(MemberVO v) {
+		System.out.println("아이디 검수:" + v.getId() + "," + v.getName());
+		ModelAndView mav = new ModelAndView("success");
+		mav.addObject("vo", v);
+		return mav;
+	}
+}
+```
+
+### success.jsp in `WebContent`/`WEB-INF`/`jsp`
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Success</title>
+</head>
+<body>
+	<p style="color:blue; font-size: 20px">
+		Info : ${vo.name} 님 반갑습니다. 당신의 정보중 주소는 ${vo.addredd} 입니다. ^^
+	</p>
+</body>
+</html>
+```
 
 ## Reference
 - Spring framework basic chapter 1 : http://blog.naver.com/madplay/220641077920
