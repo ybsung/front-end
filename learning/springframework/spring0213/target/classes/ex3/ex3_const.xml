@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- ex3_const -->
+	<bean id="cont1" class="ex3.Ex3_ServiceImple">
+	<constructor-arg value="10000" type="int"/>
+	</bean>
+	<!-- 
+		생성자 오버로딩일 경우 생성자의 자료형을 명시 해줘야 한다.
+		cont2라 이름으로 생성자의 인자가 2개인 빈을 만들어서 moniter()를 호출하시오.
+	 -->
+	 <bean id="cont2" class="ex3.Ex3_ServiceImple">
+	 <constructor-arg value="10000"/>
+	 <constructor-arg value="김길동"/>
+	 </bean>
+</beans>
+
+
+
+
+

@@ -1,0 +1,9 @@
+create table member(
+num number primary key,
+id varchar2(10) not null,
+password varchar2(10) not null,
+name varchar2(24),
+address varchar2(100));
+create sequence member_seq
+increment by 1
+start with 1;

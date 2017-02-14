@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- scope="prototype" : 이것은 싱글톤을 해제하는 속성 -->
+	<bean id="msg" class="ex1.Ex1_MessageApp" scope="prototype">
+		<property name="msg" value="안녕하세요!"/>
+	</bean>
+	<bean id="today" class="ex1.Exam_Todate">
+		<property name="name" value="김길동"/>
+	</bean>
+	
+</beans>
