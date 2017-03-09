@@ -16,11 +16,17 @@ Your typical French breakfast with croissants, coffee and more.
  
 Andrew Clark 
 Engineer at Facebook. Co-creator of Redux. Creator of Recompose, prolific contributor to Open Source. Contributes to Fiber and new documentation on the React team. 
- 
+
+- [Recompose](../react-friends/recompose.md)
+- [Redux](./redux.md)
+- [Fiber](./fiber.md) 
+
 ### 10:30 Coming soon 
  
 Dominic Gannaway 
 Author of Inferno – a blazing fast React-like JavaScript UI library. Dominic is now part of the React team at Facebook. Enjoys coding + being a Dad. 
+
+- Inferno : https://github.com/infernojs/inferno
  
 ### 11:00 Coffee Break 
  
@@ -30,7 +36,19 @@ Socialize, have some coffee or other drinks.
  
 Christoph Pojer 
 Engineer at Facebook · Jest · Relay · React · Auphonic · TUGraz. 
- 
+
+- Jest 
+  * https://facebook.github.io/jest/ 
+  * Painless JavaScript Testing 
+  * Easy Setup / Instant Feedback / Snapshot Testing 
+- Relay 
+  * https://facebook.github.io/relay/
+  * A JAVASCRIPT FRAMEWORK FOR BUILDING DATA-DRIVEN REACT APPLICATIONS
+  * DECLARATIVE / COLOCATION / MUTATIONS
+- Auphonic 
+  * https://github.com/auphonic/auphonic-mobile/tree/master/JavaScript
+- TUGraz 
+
 ### 12:00 La nouvelle vague 
  
 The new wave of frameworks won’t be frameworks at all. 
