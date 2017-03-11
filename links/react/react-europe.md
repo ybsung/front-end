@@ -1,7 +1,106 @@
 # React Europe 2017  
   
 https://www.react-europe.org/  
+
+## Agenda
+
+### 08:30 Registration  
+### 08:45 Breakfast  
+### 10:00 React > Keynote  
+### 10:30 React friends > Inferno
+### 11:00 Coffee Break  
+### 11:30 React > Jest  
+### 12:00 The new wave of frameworks  
+### 14:00 Coming soon  
+### 14:30 JS > WebAssembly > What WebAssembly means for React  
+### 15:00 Coffee Break  
+### 15:30 Coming soon  
+### 16:00 Reason  
+### 16:30 Coffee Break  
+### 17:30 React Native > react-navigation  
+### 18:00 React > How Streaming Can Supercharge React  
+
+### 08:30 Check-in  
+### 08:45 Breakfast  
+### 09:30 JS > Elm > Putting the fun in functional with Elm  
+### 09:45 React Native > Integrating React Native with Native Infrastructure  
+### 10:00 React friends > MobX
+### 10:30 Coffee Break  
+### 11:00 Coming soon  
+### 11:30 React Native > App > Twitter for Mobile Web  
+### 14:00 React VR > The runtimes of React VR and use at Oculus  
+### 14:30 Functional && Reactive  
+### 15:00 Coffee Break  
+### 15:30 React > GraphQL  
+### 16:00 Animating the Virtual DOM  
+### 16:30 Coffee Break  
+### 17:00 Coming soon  
+### 17:30 React > React as a Platform: A path towards a truly cross-platform UI  
+### 18:00 React Native > Declarative Animations  
+### 18:30 Q&A Panel  
   
+## Wednesday, 16 ~ 17 May
+
+- React Workshop with Max Stoiber and Nik Graf  
+  * Advanced React Topics (morning May 16th)  
+    * Manipulating Component Children  
+    * Building a Wrapper Component  
+    * Building a Higher order component  
+    * Composing higher order components  
+  * Tooling (afternoon of May 16th)  
+    * Setup Hot reloading  
+    * Speeding up hot reloading significantly with Webpack DLL  
+    * Codesplitting with Webpack & how to make it work with the React Router  
+    * Treeshaking with Webpack2 to reduce your load size  
+  * Building a GraphQL Server with Relay (May 17th)  
+    * Setting up a schema  
+    * Connecting to a datasource (microservice or datastore)  
+    * Setting up Relay  
+    * Fetching data with static queries  
+    * Fetching data with dynamic queries  
+    * Writing data with mutations  
+  * https://medium.com/@ReactEurope/nik-graf-and-maximilian-stoiber-react-js-workshop-26a14d57ff1b#.69qr1ujor  
+  * apollo : https://github.com/apollographql/react-apollo  
+    * Apollo Client 1.0 is coming  
+      https://dev-blog.apollodata.com/apollo-client-1-0-is-coming-23b74b13fbbb#.78kscoph9
+
+  
+- React Native Workshop with Brent Vatne and Devin Abbott  
+  * React Native overview & architecture.  
+  * “Hello world” with create-react-native-app.  
+  * Tooling: packager, developer tools, debugging.  
+  * ES6/7 highlights relevant to React Native (async/await, classes, property initializers, fetch).  
+  * Core components, styling, flex box.  
+  * Routing: react-navigation.  
+  * https://medium.com/@ReactEurope/brent-vatne-will-be-running-the-react-native-workshop-with-devin-abbott-f3bf48a4a9d0#.8a5holdzv  
+  
+- Building real life apps with React & MobX  
+  * Introduction.  
+  * Setup  
+  * ES6 / ES.Next recap: arrow functions, classes, decorators, field initializers  
+  * Introduction to MobX, why MobX for state management?  
+  * MobX basics: observable, computed, autorun & action  
+  * Modelling domain state: stores, models, actions  
+  * Testing state & logic, JEST, snapshots  
+  * Building reactive user interface: observer (+ testing)  
+  * Recap: How does MobX track changes?  
+  * Using Provider / inject to pass stores through deeply nested interfaces  
+  * Fetching & storing data (+ testing)  
+  * Routing & authentication  
+  * Form validations  
+  * Conclusion  
+  
+- CSS-in-JS Workshop with Sunil Pai  
+  * what problems does css-in-js solve?  
+  * comparison of different css-in-js libraries  
+  * a deepdive into glamor  
+  * different interfaces: jsxstyle, aphrodite, styled components  
+  * server side / static side rendering  
+  * composition strategies - theming, modularity, lazy loading, etc.  
+  * write your own plugins  
+  * autocomplete for styles with typescript/flow  
+  * build your own css-in-js lib!  
+
 ## Thursday, 18 May  
   
 ### 08:30 Registration  
@@ -83,8 +182,9 @@ Socialize, have some coffee or other drinks.
   
 Coming soon  
   
-I like making fun interactive things and making tools to make fun interactive things. By working on Exponent I can do both! Made React Native game Floatyplane and recently helped reimplement webgl for ios and android.  
 Nikhilesh Sigatapu  
+I like making fun interactive things and making tools to make fun interactive things. By working on Exponent I can do both! Made React Native game Floatyplane and recently helped reimplement webgl for ios and android.  
+
 ### 16:00 Reason  
 Coming soon  
   
@@ -101,6 +201,10 @@ Coming soon
   
 Eric Vicenti  
 Working on React Native and specifically on navigation and using it to build cross-platform apps at Facebook since 2014.  
+
+- Getting Started with React Navigation, the Navigation Solution for React Native  
+  * https://hackernoon.com/getting-started-with-react-navigation-the-navigation-solution-for-react-native-ea3f4bd786a4#.1g0ic6kji  
+- https://reactnavigation.org/  
   
 ### 18:00 How Streaming Can Supercharge React  
   
@@ -203,6 +307,9 @@ Coming soon
 Lee Byron  
 Making things at Facebook since 2008: React, GraphQL co-creator, Immutable.js, Mobile, JavaScript.  
   
+- The Anatomy of a GraphQL Query
+  * https://dev-blog.apollodata.com/the-anatomy-of-a-graphql-query-6dffa9e9e747#.qjei7m6ni
+
 ### 16:00 Animating the Virtual DOM  
   
 We are biologically trained to notice motion: evolutionarily speaking, our survival depends on it. For this reason, animation when done well can guide your users. It can aid and reinforce spatial maps of our interfaces, and give us a sense that we understand interactions more deeply. For this reason, animation is incredibly powerful to convey meaning, but only when done well.  
@@ -245,3 +352,8 @@ Joel is a front end engineer working at Klarna, creator of popular open source l
 ### 18:30 Q&A Panel  
   
 This is your opportunity to ask questions to the team.  
+
+
+# React Europe 2016
+
+https://www.youtube.com/playlist?list=PLCC436JpVnK09bZeayg-KeLuHfHgc-tDa
