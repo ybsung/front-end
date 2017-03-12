@@ -85,6 +85,45 @@ https://github.com/facebook/react/issues/8830
 
 Andrew Clark: What's Next for React — ReactNext 2016  
 https://www.youtube.com/watch?v=aV1271hd9ew  
+- Fiber source : https://github.com/facebook/react/tree/master/src/renderers/shared/fiber
+- Why Fiber  
+- How it works  
+- What it can do  
+- Answers
+  * Why rewirte React?  
+    * Scheduling  
+      * React controls both how and when to update your UI  
+      * The different ways that updates near enders  
+        * User events (clicks, input chage)  
+        * External data subscriptions (Redux)  
+        * Animations (transitions, gestures)  
+      * Scheduling allows you to prioritize different types of work  
+    * Concurrency  
+      * 1. Interrupt the current, lower priority work  
+        * Interrupt current rendering call stack
+        * "Stash" the call stack off the the side
+        * Perform some higher priority work, which has its own call stack
+        * Go back to the original call stack and resume
+      * 2. Complete the hight priority work  
+      * 3. Resume the interrupted work where it left off  
+      * Fiber is a reimplementation of the stack  
+      * A fiber is a unit of concurrency  
+    * Proirity
+    * Memorized input (props)
+    * Key (used during reconciliation)
+    * Integrated layout
+      * Return multiple elements from render
+      * Clean up codebase; make contributions easier
+    * 60 fps web apps
+* Fiber
+  * React Fiber is experimental
+  * Led by Sebastian Markbage, based heavily on prototype by Jordan Walke.
+  * No new features at first
+  * Proioritization is an implementation detail
+  * Follow along on Github!
+
+ReactNext
+https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w
 
 ### How to install React Fiber  
 
