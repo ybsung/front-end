@@ -1,12 +1,19 @@
 # Fiber 
- 
-## React Fiber Architecture
-
-https://github.com/acdlite/react-fiber-architecture  
 
 ## React - Basic Theoretical Concepts
 
 https://github.com/reactjs/react-basic  
+
+* Transformation  
+* Abstraction  
+* Composition  
+* State  
+* Memoization  
+* Lists  
+* Continuations  
+* State Map  
+* Memoization Map  
+* Algebraic Effects  
 
 ## Thinking in React
 
@@ -30,7 +37,10 @@ https://facebook.github.io/react/docs/thinking-in-react.html
       * If you can't find a component where it makes sense to own the state, create a new component simply for holding the state and add it somewhere in the hierarchy above the common owner component.  
   * Step 5: Add Inverse Data Flow  
   
-## Design Principles : https://facebook.github.io/react/contributing/design-principles.html  
+## Design Principles
+
+https://facebook.github.io/react/contributing/design-principles.html  
+
 * Composition  
   * Can add functionality to a component without causing rippling changes throughout the codebase  
 * Common Abstraction  
@@ -57,14 +67,25 @@ https://facebook.github.io/react/docs/thinking-in-react.html
 * Optimized for Tooling  
 * Dogfooding  
   
-New Core Algorithm : https://github.com/facebook/react/issues/6170  
-The features  
+## React Fiber Architecture
+
+https://github.com/acdlite/react-fiber-architecture  
+
+### New Core Algorithm : https://github.com/facebook/react/issues/6170  
+
+### React future
+https://github.com/reactjs/react-future  
+
+### The features  
+
 https://github.com/facebook/react/issues/7925  
 https://github.com/facebook/react/issues/8830  
-Video  
+
+### Video  
+
 Andrew Clark: What's Next for React — ReactNext 2016  
 https://www.youtube.com/watch?v=aV1271hd9ew  
-How to install React Fiber  
-https://devdemand.co/how-to-install-react-fibre/  
 
-https://github.com/reactjs/react-future  
+### How to install React Fiber  
+
+https://devdemand.co/how-to-install-react-fibre/  
