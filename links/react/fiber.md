@@ -88,7 +88,7 @@ https://github.com/reactjs/react-future
 https://github.com/facebook/react/issues/7925  
 https://github.com/facebook/react/issues/8830  
 
-## The PRs
+### The PRs
 
 https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr%20is%3Aopen%20fiber
   
@@ -132,6 +132,9 @@ https://www.youtube.com/watch?v=aV1271hd9ew
   * No new features at first
   * Proioritization is an implementation detail
   * Follow along on Github!
+
+Sebastian Markbage: Minimal API Surface Area | JSConf EU 2014
+https://www.youtube.com/watch?v=4anAwXYqLG8
 
 ReactNext
 https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w
