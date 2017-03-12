@@ -71,18 +71,29 @@ https://facebook.github.io/react/contributing/design-principles.html
 
 https://github.com/acdlite/react-fiber-architecture  
 
-### New Core Algorithm : https://github.com/facebook/react/issues/6170  
+### New Core Algorithm
 
-### React future
+https://github.com/facebook/react/issues/6170  
+
+### Fiber Principles: Contributing To Fiber  
+  
+https://github.com/facebook/react/issues/7942  
+  
+### React future  
+
 https://github.com/reactjs/react-future  
-
+  
 ### The features  
-
+  
 https://github.com/facebook/react/issues/7925  
 https://github.com/facebook/react/issues/8830  
 
-### Video  
+## The PRs
 
+https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr%20is%3Aopen%20fiber
+  
+### Video  
+  
 Andrew Clark: What's Next for React — ReactNext 2016  
 https://www.youtube.com/watch?v=aV1271hd9ew  
 - Fiber source : https://github.com/facebook/react/tree/master/src/renderers/shared/fiber
