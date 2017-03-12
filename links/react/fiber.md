@@ -31,8 +31,32 @@ https://facebook.github.io/react/docs/thinking-in-react.html
   * Step 5: Add Inverse Data Flow  
   
 ## Design Principles : https://facebook.github.io/react/contributing/design-principles.html  
-* 
-
+* Composition  
+  * Can add functionality to a component without causing rippling changes throughout the codebase  
+* Common Abstraction  
+  * We resist adding features  
+  * Exception: Raising the abstraction level benefits the whole ecosystem  
+  * “big picture” label  
+* Escape Hatches  
+  * educate the community about the alternatives  
+  * provide an imperative API  
+  * provide a temporary subpar working API  
+* Stability  
+  * Prefer the stability in the sense of "It is heavily used in production
+  * Change if there is a clear (and preferably automated) migration path
+* Interoperability
+  * Start using React for a small feature rather than rewrite their code to bet on it
+* Scheduling  
+* Developer Experience  
+  * For example, React DevTools
+* Debugging  
+* Configuration  
+* Beyond the DOM  
+* Implementation  
+  * Verbose code that is easy to move around, change and remove is preferred to elegant code that is prematurely abstracted and hard to change.
+* Optimized for Tooling  
+* Dogfooding  
+  
 New Core Algorithm : https://github.com/facebook/react/issues/6170  
 The features  
 https://github.com/facebook/react/issues/7925  
@@ -42,3 +66,5 @@ Andrew Clark: What's Next for React — ReactNext 2016
 https://www.youtube.com/watch?v=aV1271hd9ew  
 How to install React Fiber  
 https://devdemand.co/how-to-install-react-fibre/  
+
+https://github.com/reactjs/react-future  
