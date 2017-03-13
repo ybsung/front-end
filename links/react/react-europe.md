@@ -4,40 +4,44 @@ https://www.react-europe.org/
 
 ## Agenda
 
-### 08:30 Registration  
-### 08:45 Breakfast  
-### 10:00 React > Keynote  
-### 10:30 React friends > Inferno
-### 11:00 Coffee Break  
-### 11:30 React > Jest  
-### 12:00 The new wave of frameworks  
-### 14:00 Coming soon  
-### 14:30 JS > WebAssembly > What WebAssembly means for React  
-### 15:00 Coffee Break  
-### 15:30 Coming soon  
-### 16:00 Reason  
-### 16:30 Coffee Break  
-### 17:30 React Native > react-navigation  
-### 18:00 React > How Streaming Can Supercharge React  
+### Day 1
 
-### 08:30 Check-in  
-### 08:45 Breakfast  
-### 09:30 JS > Elm > Putting the fun in functional with Elm  
-### 09:45 React Native > Integrating React Native with Native Infrastructure  
-### 10:00 React friends > MobX
-### 10:30 Coffee Break  
-### 11:00 Coming soon  
-### 11:30 React Native > App > Twitter for Mobile Web  
-### 14:00 React VR > The runtimes of React VR and use at Oculus  
-### 14:30 Functional && Reactive  
-### 15:00 Coffee Break  
-### 15:30 React > GraphQL  
-### 16:00 Animating the Virtual DOM  
-### 16:30 Coffee Break  
-### 17:00 Coming soon  
-### 17:30 React > React as a Platform: A path towards a truly cross-platform UI  
-### 18:00 React Native > Declarative Animations  
-### 18:30 Q&A Panel  
+08:30 Registration  
+08:45 Breakfast  
+10:00 React > Keynote  
+10:30 React friends > Inferno
+11:00 Coffee Break  
+11:30 React > Jest  
+12:00 The new wave of frameworks  
+14:00 Coming soon  
+14:30 JS > WebAssembly > What WebAssembly means for React  
+15:00 Coffee Break  
+15:30 Coming soon  
+16:00 React > Reason  
+16:30 Coffee Break  
+17:30 React Native > react-navigation  
+18:00 React > How Streaming Can Supercharge React  
+
+### Day 2
+
+08:30 Check-in  
+08:45 Breakfast  
+09:30 JS > Elm > Putting the fun in functional with Elm  
+09:45 React Native > Integrating React Native with Native Infrastructure  
+10:00 React friends > MobX
+10:30 Coffee Break  
+11:00 Coming soon  
+11:30 React Native > App > Twitter for Mobile Web  
+14:00 React VR > The runtimes of React VR and use at Oculus  
+14:30 Functional && Reactive  
+15:00 Coffee Break  
+15:30 React > GraphQL  
+16:00 Animating the Virtual DOM  
+16:30 Coffee Break  
+17:00 Coming soon  
+17:30 React > React as a Platform: A path towards a truly cross-platform UI  
+18:00 React Native > Declarative Animations  
+18:30 Q&A Panel  
   
 ## Wednesday, 16 ~ 17 May
 
@@ -191,6 +195,8 @@ Coming soon
 Cheng Lou  
 React core member. Currently working on reason. Creator of React Motion.  
   
+- Reason : https://facebook.github.io/reason/
+
 ### 16:30 Coffee Break  
   
 Socialize, have some coffee or other drinks.  
