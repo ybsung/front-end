@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
 })
 ```
 
-index.ios.js : https://github.com/browniefed/examples/blob/todo/layout/todo/index.ios.js  
-index.android.js : https://github.com/browniefed/examples/blob/todo/layout/todo/index.android.js  
+index.ios.js  
+index.android.js  
 ```
 AppRegistry.registerComponent('todo', () => App);
 ```
@@ -42,37 +42,39 @@ Repo & branch : https://github.com/browniefed/examples/tree/todo/textinput
 Compare : https://github.com/browniefed/examples/compare/todo/layout...todo/textinput
 
 header.js  
-  * <View>  
-    * <TextInput  
+  * View  
+    * TextInput  
       * value={this.props.value}
       * placeholder="What needs to be done?"
       * blurOnSubmit={false}
       * returnKeyType="done"
       *
       * onChangeText={this.props.onChange}
-      * onSubmitEditing={this.props.onAddItem}
-    * >  
+      * onSubmitEditing={this.props.onAddItem}  
   
 app.js  
-  * <View>  
-    * <Header>  
+  * View  
+    * Header  
       * value
       * ( onSubmitEditing-> ) onAddItem={this.handleAddItem}  
       * ( onChangeText-> ) onChange={(value) => this.setState({ value })}  
-    * <View>  
-    * <Footer>  
+    * View  
+    * Footer  
 
-handleAddItem () => this.setState({
-  items:   [
-    ...this.state.items,
-    {
-      key: Date.now(),
-      text: this.state.value,
-      complete: false
-    }
-  ],
-  value: ""
-});
+  * handleAddItem 
+```
+  handleAddItem () => this.setState({
+    items:   [
+      ...this.state.items,
+      {
+        key: Date.now(),
+        text: this.state.value,
+        complete: false
+      }
+    ],
+    value: ""
+  });
+```
 
 ## 4. Add a Toggle All Complete Button with React Native TouchableOpacity  
 ## 5. Create a List of Items with a React Native ListView  
