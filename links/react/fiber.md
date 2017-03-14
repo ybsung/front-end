@@ -142,3 +142,4 @@ https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w
 ### How to install React Fiber  
 
 https://devdemand.co/how-to-install-react-fibre/  
+http://blog.revathskumar.com/2017/01/react-fiber-try-it-now.html  
