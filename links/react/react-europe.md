@@ -211,6 +211,8 @@ Working on React Native and specifically on navigation and using it to build cro
 - Getting Started with React Navigation, the Navigation Solution for React Native  
   * https://hackernoon.com/getting-started-with-react-navigation-the-navigation-solution-for-react-native-ea3f4bd786a4#.1g0ic6kji  
 - https://reactnavigation.org/  
+- http://airbnb.io/native-navigation/  
+- http://airbnb.io/native-navigation/  
   
 ### 18:00 How Streaming Can Supercharge React  
   
