@@ -94,6 +94,9 @@ https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr%20is%3Aopen%20f
   
 ### Video  
   
+Why, What, and How of React Fiber with Dan Abramov and Andrew Clark
+https://www.youtube.com/watch?v=crM1iRVGpGQ
+  
 Andrew Clark: What's Next for React — ReactNext 2016  
 https://www.youtube.com/watch?v=aV1271hd9ew  
 - Fiber source : https://github.com/facebook/react/tree/master/src/renderers/shared/fiber
