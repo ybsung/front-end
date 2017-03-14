@@ -10,7 +10,7 @@ https://egghead.io/courses/build-a-react-native-todo-application
 Repo & branch : https://github.com/browniefed/examples/tree/todo/layout/todo  
   
 header.js  
-  * import { View } from "react-native";
+  * import { View } from "react-native";  
   * `<View>`  
   
 footer.js  
@@ -33,15 +33,15 @@ const styles = StyleSheet.create({
   ...
 })
 ```
-
+  
 index.ios.js  
 index.android.js  
 ```
 AppRegistry.registerComponent('todo', () => App);
 ```
-
+  
 ## 3. Create a React Native TextInput  
-
+  
 Repo & branch : https://github.com/browniefed/examples/tree/todo/textinput  
 Compare : https://github.com/browniefed/examples/compare/todo/layout...todo/textinput  
   
@@ -49,22 +49,22 @@ header.js
   * import { TextInput } from "react-native";
   * `<View>`  
     * `<TextInput>`  
-      * value={this.props.value}
-      * placeholder="What needs to be done?"
-      * blurOnSubmit={false}
-      * returnKeyType="done"
-      *
-      * onChangeText={this.props.onChange}
+      * value={this.props.value}  
+      * placeholder="What needs to be done?"  
+      * blurOnSubmit={false}  
+      * returnKeyType="done"  
+      *  
+      * onChangeText={this.props.onChange}  
       * onSubmitEditing={this.props.onAddItem}  
   
 app.js  
   * `<View>`  
     * `<Header>`  
-      * value
+      * value  
       * ( onSubmitEditing-> ) onAddItem={this.handleAddItem}  
       * ( onChangeText-> ) onChange={(value) => this.setState({ value })}  
-
-  * handleAddItem 
+  
+  * handleAddItem  
 ```
   handleAddItem () => this.setState({
     items:   [
@@ -78,26 +78,26 @@ app.js
     value: ""
   });
 ```
-
+  
 ## 4. Add a Toggle All Complete Button with React Native TouchableOpacity  
-
+  
 Repo & branch : https://github.com/browniefed/examples/tree/todo/togglecomplete  
 Compare : https://github.com/browniefed/examples/compare/todo/textinput...todo/togglecomplete  
-
+  
 header.js  
-  * import { Text, TouchableOpacity } from "react-native";
+  * import { Text, TouchableOpacity } from "react-native";  
   * `<View>`  
     * `<TouchableOpacity>`  
-      * onPress={this.props.onToggleAllComplete}
-      *
-      * `<Text style={styles.toggleIcon}>{String.fromCharCode(10003)}</Text>`
+      * onPress={this.props.onToggleAllComplete}  
+      *  
+      * `<Text style={styles.toggleIcon}>{String.fromCharCode(10003)}</Text>`  
   
 app.js  
   * `<View>`  
     * `<Header>`  
-      * ( onPress-> ) onToggleAllComplete={this.handleToggleAllComplete}
-
-  * handleToggleAllComplete 
+      * ( onPress-> ) onToggleAllComplete={this.handleToggleAllComplete}  
+  
+  * handleToggleAllComplete  
 ```
 handleToggleAllComplete() {
   const complete = !this.state.allComplete;
@@ -111,16 +111,16 @@ handleToggleAllComplete() {
   })
 }
 ```
-
+  
 ## 5. Create a List of Items with a React Native ListView  
-
+  
 Repo & branch : https://github.com/browniefed/examples/tree/todo/listview  
 Compare : https://github.com/browniefed/examples/compare/todo/togglecomplete...todo/listview  
-
+  
 row.js  
-  * import { View, Text, StyleSheet } from "react-native";
+  * import { View, Text, StyleSheet } from "react-native";  
   * `<View>`  
-    * `<Text style={styles.text}>{this.props.text}</Text>`
+    * `<Text style={styles.text}>{this.props.text}</Text>`  
   
 app.js  
   * `<View>`  
@@ -130,11 +130,11 @@ app.js
         * enableEmptySections  
         * dataSource={this.state.dataSource}  
         * renderRow={({ key, ...value}) => { return `<Row ... />` }  
-        * renderSeparator={(sectionId, rowId) => { ... }
-        *
-        *  onScroll={() => Keyboard.dismiss()}
-    * `<Footer>`
-
+        * renderSeparator={(sectionId, rowId) => { ... }  
+        *  
+        *  onScroll={() => Keyboard.dismiss()}  
+    * `<Footer>`  
+  
   * Keyboard   
 ```
 import { ..., Keyboard } from "react-native";
@@ -145,7 +145,7 @@ import { ..., Keyboard } from "react-native";
   ...
 />
 ```
-  * DataSource
+  * DataSource  
 ```
 import { ..., ListView, ... } from "react-native";
 
@@ -185,30 +185,30 @@ import { ..., ListView, ... } from "react-native";
     );
   }
 ```
-
+  
 ## 6. Add a Complete Toggle with React Native Switch  
   
 Repo & branch : https://github.com/browniefed/examples/tree/todo/rowtoggleswitch  
 Compare : https://github.com/browniefed/examples/compare/todo/listview...todo/rowtoggleswitch  
   
 row.js  
-  * import { ..., Switch } from "react-native";
+  * import { ..., Switch } from "react-native";  
   * `<View>`  
-    * `<Switch>`
+    * `<Switch>`  
       * value={this.props.complete}  
       * onValueChange={this.props.onComplete}  
-    * `<View>`
-      * `<Text style={[styles.text, complete && styles.complete]}>{this.props.text}</Text>`
+    * `<View>`  
+      * `<Text style={[styles.text, complete && styles.complete]}>{this.props.text}</Text>`  
   
 app.js  
   * `<View>`  
     * `<Header>`  
     * `<View>`  
       * `<ListView>`  
-        * renderRow={({ key, ...value}) => return
-          * `<Row>`
-            * onComplete={(complete) => this.handleToggleComplete(key, complete)}
-        * ...
+        * renderRow={({ key, ...value}) => return  
+          * `<Row>`  
+            * onComplete={(complete) => this.handleToggleComplete(key, complete)}  
+        * ...  
   * handleToggleComplete   
 ```
 const newItems = this.state.items.map((item) => {
@@ -220,30 +220,30 @@ const newItems = this.state.items.map((item) => {
 })
 this.setSource(newItems, newItems);
 ```
-
+  
 ## 7. Add a Remove Item Button to Each Row with React Native TouchableOpacity  
   
 Repo & branch : https://github.com/browniefed/examples/tree/todo/destroybutton  
 Compare : https://github.com/browniefed/examples/compare/todo/rowtoggleswitch...todo/destroybutton  
   
 row.js  
-  * import { ..., TouchableOpacity } from "react-native";
+  * import { ..., TouchableOpacity } from "react-native";  
   * `<View>`  
-    * `<Switch>`
-    * `<View>`
-    * `<TouchableOpacity>`
-      * onPress={this.props.onRemove}
-      * `<Text style={styles.destroy}>X</Text>`
+    * `<Switch>`  
+    * `<View>`  
+    * `<TouchableOpacity>`  
+      * onPress={this.props.onRemove}  
+      * `<Text style={styles.destroy}>X</Text>`  
   
 app.js  
   * `<View>`  
     * `<Header>`  
     * `<View>`  
       * `<ListView>`  
-        * renderRow={({ key, ...value}) => return
-          * `<Row>`
-            * onRemove={() => this.handleRemoveItem(key)}
-        * ...
+        * renderRow={({ key, ...value}) => return  
+          * `<Row>`  
+            * onRemove={() => this.handleRemoveItem(key)}  
+        * ...  
   * handleRemoveItem   
 ```
 handleRemoveItem(key) {
@@ -260,23 +260,23 @@ Repo & branch : https://github.com/browniefed/examples/tree/todo/filteritems
 Compare : https://github.com/browniefed/examples/compare/todo/destroybutton...todo/filteritems  
   
 footer.js  
-  * import { ..., TouchableOpacity } from "react-native";
+  * import { ..., TouchableOpacity } from "react-native";  
   * `<View>`  
     * `<View>`  
-      * `<View>`
-      * `<TouchableOpacity>`
-        * onPress={() => this.props.onFilter("ALL")
-      * `<TouchableOpacity>`
-        * onPress={() => this.props.onFilter("ACTIVE")}
-      * `<TouchableOpacity>`
-        * onPress={() => this.props.onFilter("COMPLETED")}
+      * `<View>`  
+      * `<TouchableOpacity>`  
+        * onPress={() => this.props.onFilter("ALL")  
+      * `<TouchableOpacity>`  
+        * onPress={() => this.props.onFilter("ACTIVE")}  
+      * `<TouchableOpacity>`  
+        * onPress={() => this.props.onFilter("COMPLETED")}  
   
 app.js  
   * `<View>`  
     * `<Footer>`  
-      * filter={this.state.filter}
-      * 
-      * onFilter={this.handleFilter}
+      * filter={this.state.filter}  
+      *  
+      * onFilter={this.handleFilter}  
   * filterItems   
 ```
 const filterItems = (filter, items) => {
@@ -287,7 +287,7 @@ const filterItems = (filter, items) => {
   })
 }
 ```
-  * Updating the parameter of `setSrouce`
+  * Updating the parameter of `setSrouce`  
 ```
   handleFilter(filter) {
     this.setSource(this.state.items, filterItems(filter, this.state.items), { filter })
@@ -319,21 +319,161 @@ const filterItems = (filter, items) => {
     );
   }
 ```
-  * style with {[ , ]}
+  * style with {[ , ]}  
 ```
 <TouchableOpacity style={[styles.filter, filter === "ALL" && styles.selected]} ...>
 ```
-
+  
 ## 9. Add the Total Remaining Item Count to the Footer with React Native Text  
+  
+Repo & branch : https://github.com/browniefed/examples/tree/todo/activecount  
+Compare : https://github.com/browniefed/examples/compare/todo/filteritems...todo/activecount  
+  
+footer.js  
+  * import { ..., TouchableOpacity } from "react-native";  
+  * `<View>`  
+    * `<Text>{this.props.count} count</Text>`  
+    * `<View>`  
+  
+app.js  
+  * `<View>`  
+    * `<Footer>`  
+      * count={filterItems("ACTIVE", this.state.items).length}  
+  
 ## 10. Add a Clear All Complete Button to the Footer with React Native TouchableOpacity  
+  
+Repo & branch : https://github.com/browniefed/examples/tree/todo/clearcompleted  
+Compare : https://github.com/browniefed/examples/compare/todo/activecount...todo/clearcompleted  
+  
+footer.js  
+  * import { ..., TouchableOpacity } from "react-native";  
+  * `<View>`  
+    * `<Text>{this.props.count} count</Text>`  
+    * `<View>`  
+    * `<TouchableOpacity >`  
+      * onPress={this.props.onClearComplete}  
+      * `<Text>Clear Completed</Text>`  
+  
+app.js  
+  * `<View>`  
+    * `<Footer>`  
+      * onClearComplete={this.handleClearComplete}  
+```
+handleClearComplete() {
+  const newItems = filterItems("ACTIVE", this.state.items);
+  this.setSource(newItems, filterItems(this.state.filter, newItems));
+}
+```
+  
 ## 11. Persist Items with React Native AsyncStorage  
+  
+Repo & branch : https://github.com/browniefed/examples/tree/todo/asyncstorage  
+Compare : https://github.com/browniefed/examples/compare/todo/clearcompleted...todo/asyncstorage  
+  
+app.js  
+  * import { ..., AsyncStorage } from "react-native";  
+  * componentWillMount(), setSource()  
+```
+componentWillMount() {
+  AsyncStorage.getItem("items").then((json) => {
+    try {
+      const items = JSON.parse(json);
+      this.setSource(items, items);
+    } catch(e) {
+
+    }
+  })
+}
+setSource(items, itemsDatasource, otherState = {}) {
+  this.setState({
+    ...
+  })
+  AsyncStorage.setItem("items", JSON.stringify(items));
+}
+```
+  
 ## 12. Add a Loading Indicator While Loading Items with React Native ActivityIndicator  
+  
+Repo & branch : https://github.com/browniefed/examples/tree/todo/activityindicator  
+Compare : https://github.com/browniefed/examples/compare/todo/asyncstorage...todo/activityindicator  
+  
+app.js  
+  * import { ..., AsyncStorage } from "react-native";  
+  * render()  
+```
+<ActivityIndicator
+  animating
+  size="large"
+/>
+```
+  
 ## 13. Inline Edit Todo Items in a React Native ListView  
-
-
+  
+Repo & branch : https://github.com/browniefed/examples/tree/todo/editing  
+Compare : https://github.com/browniefed/examples/compare/todo/activityindicator...todo/editing  
+  
+row.js  
+  * import { ..., TouchableOpacity } from "react-native";  
+  * `<View>`  
+    * `<Switch>`  
+    * ~`<View>`~ {this.props.editing ? editingComponent : textComponent}  
+    * ~`<TouchableOpacity>`~ {this.props.editing ? doneButton : removeButton}  
+  * editingComponent() , doneButton()  
+```
+const editingComponent = (
+  <View style={styles.textWrap}>
+    <TextInput 
+      onChangeText={this.props.onUpdate}
+      autoFocus
+      value={this.props.text}
+      style={styles.input}
+      multiline
+    />
+  </View>
+)
+const doneButton = (
+  <TouchableOpacity style={styles.done} onPress={() => this.props.onToggleEdit(false)}>
+    <Text style={styles.doneText}>Save</Text>
+  </TouchableOpacity>
+)
+```
+  
+app.js  
+  * `<View>`  
+    * `<Header>`  
+    * `<View>`  
+      * `<ListView>`  
+        * renderRow={({ key, ...value}) => return  
+          * `<Row>`  
+            * onUpdate={(text) => this.handleUpdateText(key, text)}  
+            * onToggleEdit={(editing) => this.handleToggleEditing(key, editing)}  
+  * handleUpdateText() , handleToggleEditing()  
+```
+  handleUpdateText(key, text) {
+    const newItems = this.state.items.map((item) => {
+      if (item.key !== key) return item;
+      return {
+        ...item,
+        text
+      }
+    })
+    this.setSource(newItems, filterItems(this.state.filter, newItems));
+  }
+  handleToggleEditing(key, editing) {
+    const newItems = this.state.items.map((item) => {
+      if (item.key !== key) return item;
+      return {
+        ...item,
+        editing
+      }
+    })
+    this.setSource(newItems, filterItems(this.state.filter, newItems));
+  }
+```
+  
 ## Resources
-
-### Code Snippets
-
-https://gist.github.com/browniefed/abc2460df79d9dbae5421cde951e1ed1
-
+  
+### Code Snippets  
+  
+https://gist.github.com/browniefed/abc2460df79d9dbae5421cde951e1ed1  
+  
