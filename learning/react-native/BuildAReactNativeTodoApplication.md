@@ -1,5 +1,8 @@
 # Build a React Native Todo Application  
   
+This repo contains notes from [Jason Brown](http://browniefed.com)'s React-native course on Egghead.io
+https://egghead.io/courses/build-a-react-native-todo-application  
+  
 ## 1. Setup React Native for iOS and Android  
   
 ## 2. Create the Basic React Native Todo Application Layout  
@@ -117,8 +120,7 @@ Compare : https://github.com/browniefed/examples/compare/todo/togglecomplete...t
 row.js  
   * import { View, Text, StyleSheet } from "react-native";
   * `<View>`  
-    * `<TouchableOpacity>`  
-      * `<Text style={styles.text}>{this.props.text}</Text>`
+    * `<Text style={styles.text}>{this.props.text}</Text>`
   
 app.js  
   * `<View>`  
@@ -185,7 +187,73 @@ import { ..., ListView, ... } from "react-native";
 ```
 
 ## 6. Add a Complete Toggle with React Native Switch  
+  
+Repo & branch : https://github.com/browniefed/examples/tree/todo/rowtoggleswitch  
+Compare : https://github.com/browniefed/examples/compare/todo/listview...todo/rowtoggleswitch  
+  
+row.js  
+  * import { ..., Switch } from "react-native";
+  * `<View>`  
+    * `<Switch>`
+      * value={this.props.complete}  
+      * onValueChange={this.props.onComplete}  
+    * `<View>`
+      * `<Text style={[styles.text, complete && styles.complete]}>{this.props.text}</Text>`
+  
+app.js  
+  * `<View>`  
+    * `<Header>`  
+    * `<View>`  
+      * `<ListView>`  
+        * renderRow={({ key, ...value}) => return
+          * `<Row>`
+            * onComplete={(complete) => this.handleToggleComplete(key, complete)}
+        * ...
+  * handleToggleComplete   
+```
+const newItems = this.state.items.map((item) => {
+  if (item.key !== key) return item;
+  return {
+    ...item,
+    complete
+  }
+})
+this.setSource(newItems, newItems);
+```
+
 ## 7. Add a Remove Item Button to Each Row with React Native TouchableOpacity  
+  
+Repo & branch : https://github.com/browniefed/examples/tree/todo/destroybutton  
+Compare : https://github.com/browniefed/examples/compare/todo/rowtoggleswitch...todo/destroybutton  
+  
+row.js  
+  * import { ..., TouchableOpacity } from "react-native";
+  * `<View>`  
+    * `<Switch>`
+    * `<View>`
+    * `<TouchableOpacity>`
+      * onPress={this.props.onRemove}
+      * `<Text style={styles.destroy}>X</Text>`
+  
+app.js  
+  * `<View>`  
+    * `<Header>`  
+    * `<View>`  
+      * `<ListView>`  
+        * renderRow={({ key, ...value}) => return
+          * `<Row>`
+            * onRemove={() => this.handleRemoveItem(key)}
+        * ...
+  * handleRemoveItem   
+```
+handleRemoveItem(key) {
+  const newItems = this.state.items.filter((item) => {
+    return item.key !== key
+  })
+  this.setSource(newItems, newItems);
+}
+```
+
 ## 8. Filter Items in the React Native List View  
 ## 9. Add the Total Remaining Item Count to the Footer with React Native Text  
 ## 10. Add a Clear All Complete Button to the Footer with React Native TouchableOpacity  
