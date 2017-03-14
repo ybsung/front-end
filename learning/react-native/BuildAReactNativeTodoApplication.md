@@ -1,6 +1,6 @@
 # Build a React Native Todo Application  
   
-This repo contains notes from [Jason Brown](http://browniefed.com)'s React-native course on Egghead.io
+This repo contains notes from [Jason Brown](http://browniefed.com)'s React-native course on Egghead.io  
 https://egghead.io/courses/build-a-react-native-todo-application  
   
 ## 1. Setup React Native for iOS and Android  
@@ -81,8 +81,8 @@ app.js
 
 ## 4. Add a Toggle All Complete Button with React Native TouchableOpacity  
 
-Repo & branch : https://github.com/browniefed/examples/tree/todo/togglecomplete
-Compare : https://github.com/browniefed/examples/compare/todo/textinput...todo/togglecomplete
+Repo & branch : https://github.com/browniefed/examples/tree/todo/togglecomplete  
+Compare : https://github.com/browniefed/examples/compare/todo/textinput...todo/togglecomplete  
 
 header.js  
   * import { Text, TouchableOpacity } from "react-native";
@@ -255,6 +255,75 @@ handleRemoveItem(key) {
 ```
 
 ## 8. Filter Items in the React Native List View  
+
+Repo & branch : https://github.com/browniefed/examples/tree/todo/filteritems  
+Compare : https://github.com/browniefed/examples/compare/todo/destroybutton...todo/filteritems  
+  
+footer.js  
+  * import { ..., TouchableOpacity } from "react-native";
+  * `<View>`  
+    * `<View>`  
+      * `<View>`
+      * `<TouchableOpacity>`
+        * onPress={() => this.props.onFilter("ALL")
+      * `<TouchableOpacity>`
+        * onPress={() => this.props.onFilter("ACTIVE")}
+      * `<TouchableOpacity>`
+        * onPress={() => this.props.onFilter("COMPLETED")}
+  
+app.js  
+  * `<View>`  
+    * `<Footer>`  
+      * filter={this.state.filter}
+      * 
+      * onFilter={this.handleFilter}
+  * filterItems   
+```
+const filterItems = (filter, items) => {
+  return items.filter((item) => {
+    if (filter === "ALL") return true;
+    if (filter === "COMPLETED") return item.complete;
+    if (filter === "ACTIVE") return !item.complete;
+  })
+}
+```
+  * Updating the parameter of `setSrouce`
+```
+  handleFilter(filter) {
+    this.setSource(this.state.items, filterItems(filter, this.state.items), { filter })
+  }
+  handleRemoveItem(key) {
+    ...
+    this.setSource(newItems, filterItems(this.state.filter, newItems));
+  }
+  handleToggleComplete(key, complete) {
+    ...
+    this.setSource(newItems, filterItems(this.state.filter, newItems));
+  }
+  handleToggleAllComplete() {
+    ...
+    this.setSource(newItems, filterItems(this.state.filter, newItems), { allComplete: complete })
+  }
+  handleAddItem() {
+    ...
+    this.setSource(newItems, filterItems(this.state.filter, newItems), { value: "" })
+  }
+  render() {
+    return (
+      ...
+        <Footer 
+          onFilter={this.handleFilter}
+          filter={this.state.filter}
+        />
+      ...
+    );
+  }
+```
+  * style with {[ , ]}
+```
+<TouchableOpacity style={[styles.filter, filter === "ALL" && styles.selected]} ...>
+```
+
 ## 9. Add the Total Remaining Item Count to the Footer with React Native Text  
 ## 10. Add a Clear All Complete Button to the Footer with React Native TouchableOpacity  
 ## 11. Persist Items with React Native AsyncStorage  
