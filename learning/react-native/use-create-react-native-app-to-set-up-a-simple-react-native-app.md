@@ -1,6 +1,6 @@
 # Use create-react-native-app to Set Up a Simple React Native App
 
-This repo contains notes from the course on Egghead.io  
+This repo contains notes from Bram Borggreve's course on Egghead.io  
 https://egghead.io/lessons/use-create-react-native-app-to-set-up-a-simple-react-native-app  
 
 ## Note
