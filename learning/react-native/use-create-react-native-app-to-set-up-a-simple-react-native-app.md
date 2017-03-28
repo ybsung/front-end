@@ -14,3 +14,7 @@ cd my-app
 
 npm start
 ```
+  
+## Reference  
+Expo  
+https://docs.expo.io/versions/v15.0.0/sdk/index.html  
